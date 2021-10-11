@@ -63,13 +63,13 @@ public:
 								  enemyGroup;
 
 	short frameNumber = 0;
-	
+
 	string background = "Images/BackgroundPineforest.png";
 	string musicFile = "Sounds/Music/battle1.ogg";
 
 	void generateEnemyParty();
 
-	void drawStuff() {
+	void drawBackground() {
     	if(!texture.loadFromFile("Images/BackgroundPineforest.png")) {
    			cout << "Error loading background" << endl;
    	 	}
@@ -79,20 +79,19 @@ public:
 	}
 
 	void display() {
-    	cout << "==============================================="
-        << "===============================================\n\n" << "Frame count: " 
-		<< frameNumber << endl;
 
-		cout << endl;
-		cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
-		     << setw(14) << "Speed" << setw(14) << "Precision" << endl;
-
-		cout << "--------------------------------------------------------------" << endl;
-
+		// Displays debug data in the console
+		// system("clear");
+  //       cout << "Frame count: " << frameNumber++ << "\n\n";
+		// cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
+		//      << setw(14) << "Speed" << setw(14) << "Precision" << endl;
+		// cout << "--------------------------------------------------------------" << endl;
+		
+		drawBackground();
 		for(shared_ptr<Character> i : party) {
 			i->display();
+			i->battleAnimation.drawSprite(window);
 		}
-		frameNumber++;
 	}
 
 private:

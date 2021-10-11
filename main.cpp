@@ -22,7 +22,7 @@ int main() {
 		   screenHeight = 750,
 		   frameRate    = 60,
 		   textSize     = 32,
-		   partySize    = 5;
+		   partySize    = 1;
 
    sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Examples");
    sf::Music music;
@@ -46,14 +46,19 @@ int main() {
    //   	return -1; // error
 	// music.play();
 
+
+
    // Create your objects
    vector<shared_ptr<Character>> party;
    for(short i = 0; i < partySize; i++) {
+   	cout << "Party member " << i << " being created.";
    	party.push_back(shared_ptr<Hero>(new Hero));
    	party[i]->name = "Member " + to_string(i + 1);
    }
 
    Battle battle(party, pWindow);
+
+
 
    // Master window loop. 
    while (pWindow->isOpen()) {
@@ -82,7 +87,6 @@ int main() {
       * All stuff between these lines gets drawn to the screen.
       *********************************************************************************************/      
 
-      battle.drawStuff();
       battle.display();
 
       /********************************************************************************************

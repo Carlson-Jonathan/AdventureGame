@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
+#include "textureManager.h"
 #include <SFML/Window.hpp>
 #include <vector>
 
@@ -59,9 +60,29 @@ int main() {
    Battle battle(party, pWindow);
 
 
+   // sf::Texture texture;
+   sf::IntRect rectangle;
+   sf::Sprite sprite;
+
+   const shared_ptr<TextureManager> textureList(new TextureManager);
+
+   // if(!texture.loadFromFile("Images/dragon.png")) 
+		// cout << "Unable to load image file '" << "Images/dragon.png" << "'" << endl;
+
+	sprite.setTexture(textureList->textures["cactopus"]);
+
+   rectangle.left   = 0;
+	rectangle.top    = 0;
+	rectangle.width  = 131;
+	rectangle.height = 100;
+
+	sprite.setTextureRect(rectangle);
+
+	
 
    // Master window loop. 
    while (pWindow->isOpen()) {
+
 
    	// Event Handler (button detectors)
 	   sf::Event event;
@@ -80,6 +101,7 @@ int main() {
          }
       }
 
+
       // Erase previous screen drawings (eliminates ghosting).
       pWindow->clear(sf::Color(102, 255, 255));
 
@@ -87,7 +109,8 @@ int main() {
       * All stuff between these lines gets drawn to the screen.
       *********************************************************************************************/      
 
-      battle.display();
+      window.draw(sprite);
+      // battle.display();
 
       /********************************************************************************************
       * End of Drawing loop.

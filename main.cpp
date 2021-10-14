@@ -11,8 +11,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
-#include "textureManager.h"
 #include <SFML/Window.hpp>
+#include "textureManager.h"
 #include <vector>
 
 using namespace std;
@@ -26,16 +26,14 @@ int main() {
 		   partySize    = 1;
 
    sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Examples");
+	sf::RenderWindow* pWindow = &window;
    sf::Music music;
 	sf::Text text;
 	sf::Font font; 
 	sf::Clock clock;
 	
-	// Creating a pointer of the window so I can pass it around as a parameter.
-	sf::RenderWindow* pWindow;
-	pWindow = &window;
-
 	pWindow->setFramerateLimit(frameRate);
+   shared_ptr<TextureManager> textureList(new TextureManager);
 
    // Fonts and text
 	if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 
@@ -47,42 +45,21 @@ int main() {
    //   	return -1; // error
 	// music.play();
 
-
-
    // Create your objects
-   vector<shared_ptr<Character>> party;
-   for(short i = 0; i < partySize; i++) {
-   	cout << "Party member " << i << " being created.";
-   	party.push_back(shared_ptr<Hero>(new Hero));
-   	party[i]->name = "Member " + to_string(i + 1);
-   }
+   vector<shared_ptr<Hero>> party;
+   // for(short i = 0; i < partySize; i++) {
+   // 	party.push_back(shared_ptr<Hero>(new Hero(textureList, "dragon")));
+   // 	party[i]->name = "Member " + to_string(i + 1);
+   // }
 
-   Battle battle(party, pWindow);
+   party.push_back(shared_ptr<Hero>(new Hero(textureList, "heroine")));
+   party.push_back(shared_ptr<Hero>(new Hero(textureList, "dragon")));
+   party.push_back(shared_ptr<Hero>(new Hero(textureList, "cactopus")));
 
-
-   // sf::Texture texture;
-   sf::IntRect rectangle;
-   sf::Sprite sprite;
-
-   const shared_ptr<TextureManager> textureList(new TextureManager);
-
-   // if(!texture.loadFromFile("Images/dragon.png")) 
-		// cout << "Unable to load image file '" << "Images/dragon.png" << "'" << endl;
-
-	sprite.setTexture(textureList->textures["cactopus"]);
-
-   rectangle.left   = 0;
-	rectangle.top    = 0;
-	rectangle.width  = 131;
-	rectangle.height = 100;
-
-	sprite.setTextureRect(rectangle);
-
-	
+   Battle battle(party, pWindow, textureList);
 
    // Master window loop. 
    while (pWindow->isOpen()) {
-
 
    	// Event Handler (button detectors)
 	   sf::Event event;
@@ -101,7 +78,6 @@ int main() {
          }
       }
 
-
       // Erase previous screen drawings (eliminates ghosting).
       pWindow->clear(sf::Color(102, 255, 255));
 
@@ -109,8 +85,8 @@ int main() {
       * All stuff between these lines gets drawn to the screen.
       *********************************************************************************************/      
 
-      window.draw(sprite);
-      // battle.display();
+      // window.draw(sprite);
+      battle.display();
 
       /********************************************************************************************
       * End of Drawing loop.

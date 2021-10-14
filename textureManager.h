@@ -36,25 +36,26 @@ class TextureManager {
 public:
 
 	TextureManager() {
-		populateTexturesList();
+		populateTextures();
 	}
 
 	sf::Texture texture;
-
-	vector<pair<string, string>> fileNames = {
-		{"dragon",		"Images/dragon.png"},
-		{"cactopus", 	"Images/cactopus.png"}
-	};
-
 	map<string, sf::Texture> textures;
 
-	void populateTexturesList() {
+	vector< pair<string, string> > textureFilePaths = {
+		{"dragon",				"Images/dragon.png"},
+		{"cactopus", 			"Images/cactopus.png"},
+		{"heroine",             "Images/heroine.png"},
+		{"forrestBackground", 	"Images/forrestBackground.png"}
+	};
 
-		for(int i = 0; i < fileNames.size(); i++) {
-			if (!texture.loadFromFile(fileNames[i].second)) 
-				cout << "ERROR: Unable to load image " << fileNames[i].second << endl;
+	void populateTextures() {
+
+		for(int i = 0; i < textureFilePaths.size(); i++) {
+			if (!texture.loadFromFile(textureFilePaths[i].second)) 
+				cout << "ERROR: Unable to load image '" << textureFilePaths[i].second << "'" << endl;
 			else
-				textures.insert({fileNames[i].first, texture});
+				textures.insert({textureFilePaths[i].first, texture});
 		}
 	}
 

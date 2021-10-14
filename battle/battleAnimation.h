@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <memory>
+#include "../textureManager.h"
 #include "spriteData.h"
 
 using namespace std;
@@ -20,46 +21,44 @@ class BattleAnimation {
 public:
 
 	BattleAnimation() {}
-	BattleAnimation(shared_ptr<SpriteData> spriteData) {
+	BattleAnimation(shared_ptr<SpriteData> spriteData, shared_ptr<TextureManager> textures) {
 		this->spriteData = spriteData;
-
-		if(!texture.loadFromFile(spriteData->imageFile)) 
-			cout << "Unable to load image file '" << spriteData->imageFile << "'" << endl;
-
+		this->textures = textures;
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
-		rectangle.width  = spriteData->lowerRightX;
-		rectangle.height = spriteData->lowerRightY;
-
+		rectangle.width  = spriteData->width;
+		rectangle.height = spriteData->height;
 		sprite.setTextureRect(rectangle);
-		sprite.setTexture(texture);
+		sprite.setTexture(textures->textures[spriteData->character]);
 	}
 
-	sf::Texture texture;
+	shared_ptr<TextureManager> textures;
 	sf::IntRect rectangle;
 	sf::Sprite sprite;
 	sf::Clock clock;
+	sf::Vector2f screenPositionX;
+	sf::Vector2f screenPositionY;
 	shared_ptr<SpriteData> spriteData;
 
 	void drawSprite(sf::RenderWindow* window) {
 		window->draw(sprite);
-		cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
+		// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
 
 		// If the current image is the last in the sheet, restart with the first, otherwise
 		// continue to the next image in the sheet.
 		if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
-			rectangle.left += (spriteData->lowerRightX - spriteData->upperLeftX);
-			if(rectangle.left >= ((spriteData->lowerRightX - spriteData->upperLeftX) * 
-								   spriteData->numberOfImages ))
+
+			rectangle.left += spriteData->width;
+			if(rectangle.left >= (spriteData->width * spriteData->numberOfImages))
 				rectangle.left = 0;
 
 			sprite.setTextureRect(rectangle);
 			clock.restart();
 		}
 
-		cout << "Sprite rectangle position: " << rectangle.left << endl;
+		// cout << "Sprite rectangle position: " << rectangle.left << endl;
 
-		spriteData->displayData();
+		// spriteData->display();
 	}
 };
 

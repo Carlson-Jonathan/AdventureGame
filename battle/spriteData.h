@@ -2,48 +2,52 @@
 #define SPRITEDATA_H
 
 #include <iostream>
+#include <map>
+#include <vector>
 using namespace std;
 
 class SpriteData {
 public:
-	SpriteData() {
-		cout << "The DEFAULT SpriteData constructor is being called." << endl;
+	SpriteData() {}
+	SpriteData(string character) {
+		this->character   = character;
+		upperLeftX 	  	  = monsters[character].first.first[0];
+		upperLeftY 	 	  = monsters[character].first.first[1];
+		width		 	  = monsters[character].first.first[2];
+		height 	  		  = monsters[character].first.first[3];
+		numberOfImages    = monsters[character].first.first[4];
+		animationSpeed    = monsters[character].first.second;
+		imageFile 	  	  = monsters[character].second;
 	}
 
-	SpriteData(short upperLeftX, short upperLeftY, short lowerRightX, short lowerRightY,
-		       short spritePositionX, short spritePositionY, short numberOfImages,
-		       float animationSpeed, string imageFile) {
-		this->upperLeftX = upperLeftX;
-		this->upperLeftY = upperLeftY;
-		this->lowerRightX = lowerRightX;
-		this->lowerRightY = lowerRightY;
-		this->spritePositionX = spritePositionX;
-		this->spritePositionY = spritePositionY;
-		this->numberOfImages = numberOfImages;
-		this->animationSpeed = animationSpeed;
-		this->imageFile = imageFile;
-		cout << "The non-default SpriteData constructor is being called." << endl;
-	}
+	short upperLeftX, 		// The rectangle is used to slice out the image from the texture.
+		  upperLeftY, 
+		  width, 
+		  height,
+		  numberOfImages;
 
-	short upperLeftX = 0, 		// The rectangle is used to slice out the image from the texture.
-		  upperLeftY = 161, 
-		  lowerRightX = 191, 
-		  lowerRightY = 161,
-		  spritePositionX = 150,	// This sets where the sprite will sit on the window (top left corner)
-		  spritePositionY = 100,
-		  numberOfImages = 3;
+	float animationSpeed;
+	string imageFile,
+		   character;
 
-	float animationSpeed = 0.2f;
-	string imageFile = "Images/dragon.png";
-
-	void displayData() {
+	void display() {
 		cout << "Image File   = " << imageFile << "\n"
 			 << "Upper Left X = " << upperLeftX << "\n" 
 		     << "Upper Left Y = " << upperLeftY << "\n"
-		     << "Lower RightX = " << lowerRightX << "\n"
-		     << "Lower RightY = " << lowerRightY << "\n"
-		     << "# of images  = " << numberOfImages << endl; 
+		     << "Lower RightX = " << width << "\n"
+		     << "Lower RightY = " << height << "\n"
+		     << "# of images  = " << numberOfImages << "\n" 
+		     << "Cycle speed  = " << animationSpeed << endl;
 	}
+
+	map<string, pair<pair<vector<short>, float>, string>> monsters {
+
+      // Key/name       X   Y   width  height  #images  FPS     Image File Path 
+		{"dragon",   {{{0, 161, 191,   161,    3     }, 0.15f}, "../Images/dragon.png"}},
+		{"cactopus", {{{0, 0  , 131,   100,    6     }, 0.75f}, "../Images/cactopus.png"}},
+		{"heroine",  {{{0, 0  ,  54,    72,    5     }, 0.10f}, "../Images/heroine.png"}}
+	};
+
 
 };
 

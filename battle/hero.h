@@ -12,8 +12,8 @@ using namespace std;
 class Hero : public Character {
 public:
 
-	// Hero() {}
-	Hero() {
+	Hero() {}
+	Hero(shared_ptr<TextureManager> textures, string character) {
 		this->maxHitPoints 		= 100;
 		this->hitPoints 		= 85;
 		this->maxBloodPoints	= 90;
@@ -22,8 +22,11 @@ public:
 		this->essencePoints 	= 46;
 		this->speed 			= 80;
 		this->precision 		= 92;
-		cout << "The non-default Hero constructor is being called." << endl;
+		shared_ptr<SpriteData> spriteData(new SpriteData(character));
+		this->battleAnimation = BattleAnimation(spriteData, textures);
 	}
+
+	BattleAnimation battleAnimation;
 
 };
 

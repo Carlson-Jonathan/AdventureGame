@@ -19,6 +19,8 @@ g++ main.o battle.o battleAnimation.o -o executable.out -lsfml-graphics -lsfml-w
 ####################################################################################################
 # COMPILE INSTRUCTIONS(CMake):
 # Note: Only step 4 will be used in most cases unless you need to remake the 'build' folder.
+# Also, in the CMakeLists.txt file, the folder to generate the executable is an absolute path, which
+# will not work on other systems. I havent figured out how to set relative paths yet.
 ####################################################################################################
 1.) Create build folder (if doesnt exist). 
 2.) cd into build folder.

@@ -1,9 +1,16 @@
+#include "miscellaneous.h"
+
 vector<string> Miscellaneous::filterByFileType(vector<string> files, const string fileType) {
     for(short i = files.size() - 1; i > -1; i--) {
         if(!isFileType(files[i], fileType))
             files.erase(files.begin() + i);
     }
     return files;
+}
+
+unsigned short Miscellaneous::generateRandomNumber(const short unsigned max) {
+    srand (time(NULL));
+    return rand() % max + 1;
 }
 
 vector<string> Miscellaneous::getAllFileNamesFromDirectory(const char *path) {
@@ -32,3 +39,4 @@ bool Miscellaneous::isFileType(const string fileName, const string fileType) {
     std::size_t found = fileName.find(fileType);
     return found!=std::string::npos;
 }
+

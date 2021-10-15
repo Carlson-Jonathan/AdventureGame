@@ -7,7 +7,8 @@
 #include <iostream>
 #include <map>
 #include <memory>
-#include <SFML/Audio.hpp>
+#include "../gameSound.h"
+// #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "../textureManager.h"
@@ -23,18 +24,13 @@ public:
 		this->window = window;
 		this->textures = textures;
 
-   	 	if (!music.openFromFile(musicFile)) 
-   	 		cout << "Error opening music file, '" << musicFile << "'" << endl;
-   	 	
-   	 	music.setLoop(true);
-		music.play();
-
    	 	placeCharactersOnScreen();
+   	 	gameSound.loadAndPlayRandomBattleSong();
 	}
 
+    GameSound gameSound;    
 	shared_ptr<TextureManager> textures;
     sf::Sprite sprite;
-    sf::Music music;    
 	sf::RenderWindow* window;
 
 	vector<sf::Vector2f> heroScreenPositions = {

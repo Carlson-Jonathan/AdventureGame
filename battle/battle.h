@@ -22,20 +22,18 @@ using namespace std;
 class Battle {
 public:
 	Battle() {}
-
 	Battle(vector<shared_ptr<Hero>> party, sf::RenderWindow* window, shared_ptr<TextureManager> textures) {
-		
 		this->party = party;
 		this->window = window;
 		this->textures = textures;
 
-   	 	if (!music.openFromFile(musicFile)) {
+   	 	if (!music.openFromFile(musicFile)) 
    	 		cout << "Error opening music file, '" << musicFile << "'" << endl;
-   	 	}
+   	 	
+   	 	music.setLoop(true);
+		music.play();
 
    	 	placeCharactersOnScreen();
-   	 	music.setLoop(true);
-		// music.play();
 	}
 
 	shared_ptr<TextureManager> textures;
@@ -50,9 +48,9 @@ public:
 	};
 
 	map<string, sf::Vector2f> opponentScreenPositions = {
-		{"top",    sf::Vector2f(1000.f, 400.f)},
-		{"middle", sf::Vector2f(1000.f, 250.f)},
-		{"bottom", sf::Vector2f(1000.f, 200.f)}
+		{"top",    sf::Vector2f(1000.f, 300.f)},
+		{"middle", sf::Vector2f(1000.f, 375.f)},
+		{"bottom", sf::Vector2f(1000.f, 550.f)}
 	};
 
 
@@ -67,36 +65,11 @@ public:
 	string musicFile = "Sounds/Music/battle1.ogg";
 
 	void generateEnemyParty();
-
-	void drawBackground() {
-    	sprite.setTexture(textures->textures[background]);  
-    	sprite.setOrigin(0, 0);		
-		window->draw(sprite);
-	}
-
-	void placeCharactersOnScreen() {
-		for(short i = 0; i < party.size(); i++)
-			party[i]->battleAnimation.sprite.setPosition(heroScreenPositions[i]);
-	}
-
-	void display() {
-
-		// Displays debug data in the console
-		// system("clear");
-        // cout << "Frame count: " << frameNumber++ << "\n\n";
-		// cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
-		//      << setw(14) << "Speed" << setw(14) << "Precision" << endl;
-		// cout << "--------------------------------------------------------------" << endl;
-		
-		drawBackground();
-		for(shared_ptr<Hero> i : party) {
-			// i->display();
-			i->battleAnimation.drawSprite(window);
-		}
-	}
-
-private:
+	void drawBackground();
+	void placeCharactersOnScreen();
+	void display();
 
 };
 
+// #include "battle.cpp"
 #endif // BATTLE_H

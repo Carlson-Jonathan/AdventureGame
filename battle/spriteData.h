@@ -20,7 +20,7 @@ public:
 		imageFile 	  	  = monsters[character].second;
 	}
 
-	short upperLeftX, 		// The rectangle is used to slice out the image from the texture.
+	short upperLeftX, 		
 		  upperLeftY, 
 		  width, 
 		  height,
@@ -47,8 +47,6 @@ public:
 		{"cactopus", {{{0, 0  , 131,   100,    6     }, 0.75f}, "../Images/cactopus.png"}},
 		{"heroine",  {{{0, 0  ,  54,    72,    5     }, 0.10f}, "../Images/heroine.png"}}
 	};
-
-
 };
 
 #endif // SPRITEDATA_H

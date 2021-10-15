@@ -40,12 +40,15 @@ public:
 	sf::Vector2f screenPositionY;
 	shared_ptr<SpriteData> spriteData;
 
-	void drawSprite(sf::RenderWindow* window) {
+	void drawAndAnimateSprite(sf::RenderWindow* window) {
 		window->draw(sprite);
 		// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
 
-		// If the current image is the last in the sheet, restart with the first, otherwise
-		// continue to the next image in the sheet.
+		// Idea: Maybe instead of just designing and calling all sprites from a left-to-right sequence,
+		// you should create a sequence array containing the coordinates of the rectangle. This will
+		// allow you to pull images from any part of the texture page and may help with animation
+		// switching for different actions and events.
+
 		if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
 
 			rectangle.left += spriteData->width;

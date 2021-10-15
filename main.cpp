@@ -33,7 +33,7 @@ int main() {
 	sf::Clock clock;
 	
 	pWindow->setFramerateLimit(frameRate);
-   shared_ptr<TextureManager> textureList(new TextureManager);
+   shared_ptr<TextureManager> textures(new TextureManager);
 
    // Fonts and text
 	if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 
@@ -48,15 +48,15 @@ int main() {
    // Create your objects
    vector<shared_ptr<Hero>> party;
    // for(short i = 0; i < partySize; i++) {
-   // 	party.push_back(shared_ptr<Hero>(new Hero(textureList, "dragon")));
+   // 	party.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
    // 	party[i]->name = "Member " + to_string(i + 1);
    // }
 
-   party.push_back(shared_ptr<Hero>(new Hero(textureList, "heroine")));
-   party.push_back(shared_ptr<Hero>(new Hero(textureList, "dragon")));
-   party.push_back(shared_ptr<Hero>(new Hero(textureList, "cactopus")));
+   party.push_back(shared_ptr<Hero>(new Hero(textures, "heroine")));
+   party.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
+   party.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus")));
 
-   Battle battle(party, pWindow, textureList);
+   Battle battle(party, pWindow, textures);
 
    // Master window loop. 
    while (pWindow->isOpen()) {

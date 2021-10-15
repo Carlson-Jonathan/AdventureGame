@@ -1,22 +1,18 @@
-/*******************************************************************************
-* combat.h
-* Author: Jonathan Carlson
-* Description:
-*    Highest level object of a battle that organizes a battle sequence.
-* Copyright Jonathan Carlson 2021
-*******************************************************************************/
+// Copyright Jonathan Carlson 2021
 #ifndef BATTLE_H
 #define BATTLE_H
+
+#include "character.h"
+#include "hero.h"
 #include <iostream>
+#include <map>
 #include <memory>
-#include <vector>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "character.h"
-#include "hero.h"
 #include "../textureManager.h"
-#include <map>
+#include <vector>
+
 using namespace std;
 
 class Battle {
@@ -71,5 +67,4 @@ public:
 
 };
 
-// #include "battle.cpp"
 #endif // BATTLE_H

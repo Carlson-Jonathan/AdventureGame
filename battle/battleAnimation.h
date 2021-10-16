@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <memory>
-#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "spriteData.h"
@@ -23,7 +22,7 @@ public:
 	BattleAnimation() {}
 	BattleAnimation(shared_ptr<SpriteData> spriteData, shared_ptr<TextureManager> textures) {
 		this->spriteData = spriteData;
-		this->textures = textures;
+		this->textures   = textures;
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
 		rectangle.width  = spriteData->width;
@@ -41,6 +40,8 @@ public:
 	shared_ptr<SpriteData> spriteData;
 
 	void drawAndAnimateSprite(sf::RenderWindow* window);
+	void createSpriteFromSchematic();
+
 };
 
 #endif // BATTLEANIMATION_H

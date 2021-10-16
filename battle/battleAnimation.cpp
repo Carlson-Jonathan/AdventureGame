@@ -12,12 +12,16 @@ void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow* window) {
 	if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
 
 		rectangle.left += spriteData->width;
-		if(rectangle.left >= (spriteData->width * spriteData->numberOfImages))
+
+		if(rectangle.left >= (spriteData->width * spriteData->numberOfImages)) {
 			rectangle.left = 0;
+		}
 
 		sprite.setTextureRect(rectangle);
 		clock.restart();
 	}
+
+
 
 	// cout << "Sprite rectangle position: " << rectangle.left << endl;
 

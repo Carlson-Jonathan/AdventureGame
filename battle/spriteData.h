@@ -27,8 +27,22 @@ public:
 		  numberOfImages;
 
 	float animationSpeed;
+
 	string imageFile,
 		   character;
+
+	map<string, short> point;
+
+
+	map<string, pair<pair<vector<short>, float>, string>> monsters {
+
+      // Key/name       X   Y   width  height  #images  FPS     Image File Path 
+		{"dragon",   {{{0, 161, 191,   161,    3     }, 0.15f}, "../Images/dragon.png"}},
+		{"cactopus", {{{0, 0  , 131,   100,    6     }, 0.75f}, "../Images/cactopus.png"}},
+		{"heroine",  {{{0, 0  ,  54,    72,    5     }, 0.10f}, "../Images/heroine.png"}}
+	};
+
+	// vector<map<string, short>> 
 
 	void display() {
 		cout << "Image File   = " << imageFile << "\n"
@@ -39,14 +53,6 @@ public:
 		     << "# of images  = " << numberOfImages << "\n" 
 		     << "Cycle speed  = " << animationSpeed << endl;
 	}
-
-	map<string, pair<pair<vector<short>, float>, string>> monsters {
-
-      // Key/name       X   Y   width  height  #images  FPS     Image File Path 
-		{"dragon",   {{{0, 161, 191,   161,    3     }, 0.15f}, "../Images/dragon.png"}},
-		{"cactopus", {{{0, 0  , 131,   100,    6     }, 0.75f}, "../Images/cactopus.png"}},
-		{"heroine",  {{{0, 0  ,  54,    72,    5     }, 0.10f}, "../Images/heroine.png"}}
-	};
 };
 
 #endif // SPRITEDATA_H

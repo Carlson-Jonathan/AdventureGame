@@ -29,3 +29,17 @@ g++ main.o battle.o battleAnimation.o -o executable.out -lsfml-graphics -lsfml-w
 	Hit "c" to create crap. If it works, a "g" option will appear to generate and exit.
 4.) Run command: "make" This will create a "Main.out" executable in the source folder.
 
+########################
+Last thing I was doing:
+########################
+
+...
+
+########################
+To Do:
+########################
+CLEAN UP! CLEAN UP! AND MORE CLEAN UP!
+Fix the sprite data so it is reading from an .init file. This should replace spriteData.h
+and be read in to create sprites that battleAnimation.h can use.
+
+

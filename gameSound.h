@@ -26,7 +26,7 @@ public:
 			cout << "ERROR: Unable to load file '" << battlePlayList[trackNumber - 1] << "'" << endl;
 			return;
 		}
-		cout << "Playing song '" << battlePlayList[trackNumber - 1] << "'" << endl;
+		// cout << "Playing song '" << battlePlayList[trackNumber - 1] << "'" << endl;
 		SFMLmusic.play();
 	}
 

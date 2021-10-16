@@ -7,7 +7,7 @@
 #include "battle/character.h"
 #include <iostream>
 #include <memory>
-#include <SFML/Audio.hpp>
+// #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
@@ -46,17 +46,17 @@ int main() {
 	// music.play();
 
    // Create your objects
-   vector<shared_ptr<Hero>> party;
+   vector<shared_ptr<Hero>> playerParty;
    // for(short i = 0; i < partySize; i++) {
    // 	party.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
    // 	party[i]->name = "Member " + to_string(i + 1);
    // }
 
-   party.push_back(shared_ptr<Hero>(new Hero(textures, "heroine")));
-   party.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
-   party.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus")));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "heroine")));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus")));
 
-   Battle battle(party, pWindow, textures);
+   Battle battle(playerParty, pWindow, textures);
 
    // Master window loop. 
    while (pWindow->isOpen()) {
@@ -86,7 +86,7 @@ int main() {
       *********************************************************************************************/      
 
       // window.draw(sprite);
-      battle.display();
+      battle.generateFullBattlescape();
 
       /********************************************************************************************
       * End of Drawing loop.

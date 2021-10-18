@@ -8,10 +8,38 @@ the code so things dont get so tangled. I need to:
 4.) Break the heak out of the coupling. 
 5.) Use pointers to objects with smart pointers.
 
+####################################################################################################
+# COMPILE INSTRUCTIONS(g++):
+####################################################################################################
+Run the below command. You man need to add missing ".cpp" files to the first line:
 
-The last thing I was doing:
+g++ -c main.cpp battle/battle.cpp battle/battleAnimation.cpp
+g++ main.o battle.o battleAnimation.o -o executable.out -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
 
-main.cpp creates a party of heros by creating 'Hero' objects. 'Hero' is derived from 'Character'. 
-the parent class 'Character' creates a battle animation, which all characters should have, HOWEVER, 
-since constructors do not inherit, I need to have 'Hero' create a battle animation so it can pass
-the textures pointer through.
+####################################################################################################
+# COMPILE INSTRUCTIONS(CMake):
+# Note: Only step 4 will be used in most cases unless you need to remake the 'build' folder.
+# Also, in the CMakeLists.txt file, the folder to generate the executable is an absolute path, which
+# will not work on other systems. I havent figured out how to set relative paths yet.
+####################################################################################################
+1.) Create build folder (if doesnt exist). 
+2.) cd into build folder.
+3.) Run command: "ccmake .." 
+	Configure anything needed but you should only need to add "Debug" to the 1 blank.
+	Hit "c" to create crap. If it works, a "g" option will appear to generate and exit.
+4.) Run command: "make" This will create a "Main.out" executable in the source folder.
+
+########################
+Last thing I was doing:
+########################
+
+...
+
+########################
+To Do:
+########################
+CLEAN UP! CLEAN UP! AND MORE CLEAN UP!
+Fix the sprite data so it is reading from an .init file. This should replace spriteData.h
+and be read in to create sprites that battleAnimation.h can use.
+
+

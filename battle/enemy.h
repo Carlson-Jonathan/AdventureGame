@@ -1,18 +1,17 @@
-#ifndef HERO_H
-#define HERO_H
+#ifndef ENEMY_H
+#define ENEMY_H
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "character.h"
-#include "spriteData.h"
 using namespace std;
 
-class Hero : public Character {
+class Enemy : public Character {
 public:
 
-	Hero() {}
-	Hero(shared_ptr<TextureManager> textures, string character) {
+	Enemy() {}
+	Enemy(shared_ptr<TextureManager> textures, string character) {
 		this->maxHitPoints 		= 100;
 		this->hitPoints 		= 85;
 		this->maxBloodPoints	= 90;
@@ -26,4 +25,4 @@ public:
 	}
 };
 
-#endif // HERO_H
+#endif // ENEMY_H

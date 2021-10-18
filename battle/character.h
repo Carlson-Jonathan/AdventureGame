@@ -24,6 +24,7 @@ public:
 		  precision;
 
 	string name;
+	BattleAnimation battleAnimation;
 	
 	void display() {
 		cout << name << setw(6) << hitPoints << "/" << maxHitPoints << setw(6) << bloodPoints 

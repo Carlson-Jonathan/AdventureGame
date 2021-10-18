@@ -1,16 +1,15 @@
+// Copyright Jonathan Carlson 2021
 #ifndef BATTLEANIMATION_H
 #define BATTLEANIMATION_H
 
 #include <iostream>
-#include <SFML/Audio.hpp>
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <memory>
-#include "../textureManager.h"
 #include "spriteData.h"
+#include "../textureManager.h"
 
 using namespace std;
-
 
 /***************************************************************************************************
  * The purpose of this class is to accept a 'spriteData' object and use the information in that
@@ -23,7 +22,7 @@ public:
 	BattleAnimation() {}
 	BattleAnimation(shared_ptr<SpriteData> spriteData, shared_ptr<TextureManager> textures) {
 		this->spriteData = spriteData;
-		this->textures = textures;
+		this->textures   = textures;
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
 		rectangle.width  = spriteData->width;
@@ -40,26 +39,9 @@ public:
 	sf::Vector2f screenPositionY;
 	shared_ptr<SpriteData> spriteData;
 
-	void drawSprite(sf::RenderWindow* window) {
-		window->draw(sprite);
-		// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
+	void drawAndAnimateSprite(sf::RenderWindow* window);
+	void createSpriteFromSchematic();
 
-		// If the current image is the last in the sheet, restart with the first, otherwise
-		// continue to the next image in the sheet.
-		if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
-
-			rectangle.left += spriteData->width;
-			if(rectangle.left >= (spriteData->width * spriteData->numberOfImages))
-				rectangle.left = 0;
-
-			sprite.setTextureRect(rectangle);
-			clock.restart();
-		}
-
-		// cout << "Sprite rectangle position: " << rectangle.left << endl;
-
-		// spriteData->display();
-	}
 };
 
 #endif // BATTLEANIMATION_H

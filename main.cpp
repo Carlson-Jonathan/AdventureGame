@@ -3,15 +3,16 @@
 #ifndef MAIN_CPP
 #define MAIN_CPP
 
-#include "battle/battle.h"			// For generating a battle object
-#include "battle/character.h"		// For creating a player character party
+#include "battle/battle.h"
+#include "battle/character.h"
 #include <iostream>
-#include <memory>						// Smart Pointers
-#include <SFML/Graphics.hpp>		// Creating an SFML window
-// #include <SFML/Network.hpp>	// Future use?
-#include <SFML/System.hpp>			
-#include <SFML/Window.hpp>			// Creating an SFML window
-#include "textureManager.h"		// For creating a global textures object
+#include <memory>
+// #include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include "textureManager.h"
 #include <vector>
 
 using namespace std;
@@ -21,23 +22,23 @@ int main() {
 	short screenWidth  = 1333,
 		   screenHeight = 750,
 		   frameRate    = 60,
-		   textSize     = 32;
+		   textSize     = 32,
+		   partySize    = 1;
 
-   sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Enter Game Name Here");
+   sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Examples");
 	sf::RenderWindow* pWindow = &window;
-   // sf::Music music;
-	// sf::Text text;
-	// sf::Font font; 
-	// sf::Clock clock;
-	sf::Event event;
+   sf::Music music;
+	sf::Text text;
+	sf::Font font; 
+	sf::Clock clock;
 	
 	pWindow->setFramerateLimit(frameRate);
-   auto textures = make_shared<TextureManager>();
+   shared_ptr<TextureManager> textures(new TextureManager);
 
    // Fonts and text
-	// if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 
-	// text.setFont(font); 
-	// text.setCharacterSize(textSize); 
+	if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 
+	text.setFont(font); 
+	text.setCharacterSize(textSize); 
 
 	// Music
 	// if (!music.openFromFile("song.ogg"))
@@ -46,17 +47,22 @@ int main() {
 
    // Create your objects
    vector<shared_ptr<Hero>> playerParty;
-   playerParty.push_back(make_shared<Hero>(textures, "heroine"));
-   // playerParty.push_back(make_shared<Enemy>(textures, "dragon"));
-   // playerParty.push_back(make_shared<Enemy>(textures, "cactopus"));
+   // for(short i = 0; i < partySize; i++) {
+   // 	party.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
+   // 	party[i]->name = "Member " + to_string(i + 1);
+   // }
 
-   // This will eventually be generated in some sort of game overworld object.
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "heroine")));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus")));
+
    Battle battle(playerParty, pWindow, textures);
 
    // Master window loop. 
    while (pWindow->isOpen()) {
 
    	// Event Handler (button detectors)
+	   sf::Event event;
       while (pWindow->pollEvent(event)) {
 
       	// Close the window by clicking the "X".
@@ -79,7 +85,7 @@ int main() {
       * All stuff between these lines gets drawn to the screen.
       *********************************************************************************************/      
 
-		// This will eventually be called by some sort of game overworld object.      
+      // window.draw(sprite);
       battle.generateFullBattlescape();
 
       /********************************************************************************************

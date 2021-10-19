@@ -30,35 +30,78 @@ using namespace std;
  * textures used by the program. The object will have a const pointer in the main.cpp file 
  * (a global pointer) that should be passed as a parameter to any objects/functions that would 
  * create any kind of sprite or animation.
+ *
+ * Call a texture with 'texture["category"]["character"]'
  **************************************************************************************************/
 
 class TextureManager {
 public:
 
 	TextureManager() {
-		populateTextures();
+		populateAllTextureCategories();
+		populateMasterTexturesObject();
 	}
 
 	sf::Texture texture;
-	map<string, sf::Texture> textures;
 
-	vector< pair<string, string> > textureFilePaths = {
-		{"dragon",				"Images/dragon.png"},
-		{"cactopus", 			"Images/cactopus.png"},
-		{"heroine",             "Images/heroine.png"},
-		{"forrestBackground", 	"Images/forrestBackground.png"}
+	// Texture file paths. Grouped by category.
+	vector< pair<string, string> > heroTextureFilePaths = {
+		{"heroine",             "Images/heroine.png"}
 	};
 
-	void populateTextures() {
+	vector< pair<string, string> > enemyTextureFilePaths = {
+		{"dragon",				"Images/dragon.png"},
+		{"cactopus", 			"Images/cactopus.png"}
+	};
 
+	vector< pair<string, string> > battlescapeTextureFilePaths = {
+		{"forrestBattlescape", 	"Images/Battlescapes/forrestBattlescape.png"},
+		{"desertBattlescape",	"Images/Battlescapes/desertBattlescape.png"},
+		{"meadowBattlescape", 	"Images/Battlescapes/meadowBattlescape.png"}
+	};
+
+	// Groups of initilized textures. Named by category.
+	map<string, sf::Texture> heroTextures;
+	map<string, sf::Texture> enemyTextures;
+	map<string, sf::Texture> battlescapeTextures;
+
+	// Master Texture Object. A vector of initilized groups.
+	map<string, map<string, sf::Texture>> textures;
+
+	void populateTextureCategory(map<string, sf::Texture> & category, vector<pair<string, string>> textureFilePaths) {
 		for(int i = 0; i < textureFilePaths.size(); i++) {
 			if (!texture.loadFromFile(textureFilePaths[i].second)) 
 				cout << "ERROR: Unable to load image '" << textureFilePaths[i].second << "'" << endl;
-			else
-				textures.insert({textureFilePaths[i].first, texture});
+			else 
+				category.insert({textureFilePaths[i].first, texture});
 		}
 	}
 
+	void populateAllTextureCategories() {
+		populateTextureCategory(heroTextures, 		 heroTextureFilePaths);
+		populateTextureCategory(enemyTextures, 		 enemyTextureFilePaths);
+		populateTextureCategory(battlescapeTextures, battlescapeTextureFilePaths);
+	};
+
+	void populateMasterTexturesObject() {
+		textures.insert(std::pair<string, map<string, sf::Texture>>("heroTextures", heroTextures));
+		textures.insert(std::pair<string, map<string, sf::Texture>>("enemyTextures", enemyTextures));
+		textures.insert(std::pair<string, map<string, sf::Texture>>("battlescapeTextures", battlescapeTextures));
+	};
+
+	void displayAllInitializedTextures() {
+		cout << "###############################"
+		     << " List of Initialized Textures: "
+		     << "###############################" << endl;
+		for(auto i = textures.begin(); i != textures.end(); i++) {
+			cout << "Category '" << i->first << "' (" << i->second.size() << " items):" << endl;
+			for(auto j : i->second) {
+				cout << "\t" << j.first << " (texture)\n";
+			}
+		}
+		cout << "##############################################"
+		     << "###############################################" << endl;
+	}
 };
 
 #endif // TEXUTUREMANAGER_H

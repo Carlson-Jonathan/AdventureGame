@@ -25,11 +25,11 @@ vector<string> Miscellaneous::getAllFileNamesFromDirectory(const char *path) {
         }
     }
 
-    closedir(directory);
+    closedir(directory); // Destructor? Hopefully?
     return files;
 }
 
-vector<string> Miscellaneous::getFileTypesFromDirectory(const char *path, const string fileType) {
+vector<string> Miscellaneous::getFileTypesFromDirectory(const char* path, const string fileType) {
     vector<string> files = getAllFileNamesFromDirectory(path);
     return filterByFileType(files, fileType);
 }

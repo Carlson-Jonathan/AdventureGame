@@ -8,8 +8,8 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include "../miscellaneous.h"
 #include "../gameSound.h"
-// #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "../textureManager.h"
@@ -20,7 +20,8 @@ using namespace std;
 class Battle {
 public:
 	Battle() {}
-	Battle(vector<shared_ptr<Hero>> playerParty, sf::RenderWindow* window, shared_ptr<TextureManager> textures) {
+	Battle(vector<shared_ptr<Hero>> playerParty, sf::RenderWindow* window, 
+		   shared_ptr<TextureManager> textures) {
 		this->playerParty = playerParty;
 		this->window = window;
 		this->textures = textures;
@@ -31,9 +32,10 @@ public:
 	}
 
     GameSound gameSound;  
+	string battlescape = "meadowBattlescape";
 
 	shared_ptr<TextureManager> textures;
-    sf::Sprite sprite;
+    sf::Sprite landscape;
 	sf::RenderWindow* window;
 
 	vector<sf::Vector2f> heroScreenPositions = {
@@ -43,28 +45,21 @@ public:
 	};
 
 	vector<sf::Vector2f> enemyScreenPositions = {
-		{sf::Vector2f(800.f, 250.f)}, // top
-		{sf::Vector2f(900.f, 455.f)}, // middle
+		{sf::Vector2f(800.f, 250.f)},  // top
+		{sf::Vector2f(900.f, 455.f)},  // middle
 		{sf::Vector2f(1000.f, 600.f)}  // bottom
 	};
-
-
-	// map<string, pair<sf::Vector2f, sf::Vector2f>> opponentScreenPositions;
 
 	vector<shared_ptr<Hero>> playerParty;
   	vector<shared_ptr<Enemy>> enemyGroup;
 
 	short frameNumber = 0;
-	short enemyGroupSize = 3;
 
-	string background = "forrestBackground";
-	string musicFile = "Sounds/Music/battle1.ogg";
 
 	void generateEnemyGroup();
 	void drawBackground();
 	void setScreenPlacementForCharacters();
 	void generateFullBattlescape();
-
 };
 
 #endif // BATTLE_H

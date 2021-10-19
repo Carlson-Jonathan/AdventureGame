@@ -28,7 +28,7 @@ public:
 		rectangle.width  = spriteData->width;
 		rectangle.height = spriteData->height;
 		sprite.setTextureRect(rectangle);
-		sprite.setTexture(textures->textures[spriteData->character]);
+		sprite.setTexture(textures->textures[spriteData->category][spriteData->character]);
 	}
 
 	shared_ptr<TextureManager> textures;

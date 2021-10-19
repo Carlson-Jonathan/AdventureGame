@@ -33,7 +33,7 @@ g++ main.o battle.o battleAnimation.o -o executable.out -lsfml-graphics -lsfml-w
 Last thing I was doing:
 ########################
 
-...
+Trying to get the new Texture manager to work. Segmentation fault. Run gdb.
 
 ########################
 To Do:
@@ -42,4 +42,10 @@ CLEAN UP! CLEAN UP! AND MORE CLEAN UP!
 Fix the sprite data so it is reading from an .init file. This should replace spriteData.h
 and be read in to create sprites that battleAnimation.h can use.
 
+##########################
+Segmentation Fault Finder:
+##########################
+1.) Run "gdb Main.out core"
+2.) Enter command "r"
+3.) "c" to continue, or "q" to quit.
 

@@ -1,9 +1,16 @@
 #include "battle.h"
 
+// void getAndSetRandomBattleLandscape() {
+// 	numberOfLandscapes = textureManager.
+// 	Miscellaneous::generateRandomNumber(texture)
+
+// 	battlescape = 	
+// }
+
 void Battle::drawBackground() {
-	sprite.setTexture(textures->textures[background]);  
-	sprite.setOrigin(0, 0);		
-	window->draw(sprite);
+	landscape.setTexture(textures->textures["battlescape"][battlescape]);  
+	landscape.setOrigin(0, 0);		
+	window->draw(landscape);
 }
 
 
@@ -17,6 +24,11 @@ void Battle::setScreenPlacementForCharacters() {
 	}
 }
 
+void Battle::generateEnemyGroup() {
+	enemyGroup.push_back(make_shared<Enemy>(textures, "dragon"));
+	enemyGroup.push_back(make_shared<Enemy>(textures, "cactopus"));
+	// enemyGroup.push_back(make_shared<Enemy>(textures, "heroine"));
+}
 
 void Battle::generateFullBattlescape() {
 
@@ -28,6 +40,7 @@ void Battle::generateFullBattlescape() {
 	// cout << "--------------------------------------------------------------" << endl;
 	
 	drawBackground();
+
 	for(shared_ptr<Hero> i : playerParty) {
 		// i->display();
 		i->battleAnimation.drawAndAnimateSprite(window);
@@ -39,9 +52,3 @@ void Battle::generateFullBattlescape() {
 	}
 }
 
-
-void Battle::generateEnemyGroup() {
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "dragon")));
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "cactopus")));
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "heroine")));
-}

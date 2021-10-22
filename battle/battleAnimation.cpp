@@ -20,10 +20,6 @@ void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow* window) {
 		sprite.setTextureRect(rectangle);
 		clock.restart();
 	}
-
-
-
 	// cout << "Sprite rectangle position: " << rectangle.left << endl;
-
 	// spriteData->display();
 }

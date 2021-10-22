@@ -4,12 +4,11 @@
 
 #include "character.h"
 #include "enemy.h"
+#include "../gameSound.h"
 #include "hero.h"
 #include <iostream>
 #include <map>
 #include <memory>
-#include "../gameSound.h"
-// #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "../textureManager.h"

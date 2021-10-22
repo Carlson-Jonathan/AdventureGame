@@ -1,0 +1,39 @@
+This is the initialization data to create sprite objects.
+Place 2 spaces between each item on every line.
+
+Header Line:
+The first line contains the name of the character
+followed by the sprite sheet filename. Next is the width
+and height of the individual images in the sprite sheet.
+Note that the name of the character should be unique as
+this is the key used to search for the correct data.
+
+Other Lines:
+Each additional line starts with the name of the action
+the character is performing. The float represents the 
+speed at which the images should cycle to create a flip-
+book style animation. The numbers following are paired
+as (X, Y) points in pixels representing the upper left
+corner of the image being displayed. Therefore there 
+should always be an even number of numbers after the float.
+
+dragon dragon.png  416  380
+idle   0.20f  0    161  191  161  382  161
+attack 0.80f  282  346  953  369
+defend 0.40f  321  456  789  654  123  456  879  482
+damage 0.75f  741  852  741  852  963  852  417  123
+death  0.30f  012  321  085  046  049  045  045  456
+
+cactopus cactopus.png  582  1000
+idle    0.30f  0    456  987  123  654  987  654  123
+attack  0.12f  854  654  852  951  987  654  327  789
+defend  0.80f  123  012  960  980  024  209  470  101
+damage  0.45f  375  786  321  654  987  654
+death   0.15f  822  741  852  963  852  741
+
+heroine heroine.png  654 785
+idle    0.10f  111  222  333  444  555  666
+attack  0.12f  034  056  078  091  054  876  555  846
+defend  5.40f  741  852  963  852  741  147  258  369
+damage  2.00f  369  587  259  159  951  753
+death   2.22f  753  951  867  425  624  841

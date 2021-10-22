@@ -17,6 +17,7 @@ public:
     static vector<string> getFileTypesFromDirectory(const char *path, const string fileType);
     static vector<string> getAllFileNamesFromDirectory(const char *path);
     static bool           isFileType(const string fileName, const string fileType);
+    static float          convertStringToFloat(string number);
 };
 
 #endif // MISCELLANEOUS_H

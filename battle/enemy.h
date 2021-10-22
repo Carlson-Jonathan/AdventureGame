@@ -1,10 +1,11 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include "character.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "character.h"
+
 using namespace std;
 
 class Enemy : public Character {
@@ -21,6 +22,7 @@ public:
 		this->speed 			= 80;
 		this->precision 		= 92;
 		shared_ptr<SpriteData> spriteData(new SpriteData(character));
+		auto spriteSchematic = make_shared<SpriteSchematic>(character);
 		this->battleAnimation   = BattleAnimation(spriteData, textures);
 	}
 };

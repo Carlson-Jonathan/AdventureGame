@@ -7,9 +7,8 @@
 #include "battle/character.h"
 #include <iostream>
 #include <memory>
-// #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
+// #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "textureManager.h"

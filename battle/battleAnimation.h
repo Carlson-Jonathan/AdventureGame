@@ -2,6 +2,7 @@
 #ifndef BATTLEANIMATION_H
 #define BATTLEANIMATION_H
 
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
@@ -41,7 +42,6 @@ public:
 
 	void drawAndAnimateSprite(sf::RenderWindow* window);
 	void createSpriteFromSchematic();
-
 };
 
 #endif // BATTLEANIMATION_H

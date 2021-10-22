@@ -40,3 +40,8 @@ bool Miscellaneous::isFileType(const string fileName, const string fileType) {
     return found!=std::string::npos;
 }
 
+float Miscellaneous::convertStringToFloat(string number) {
+    std::string::size_type sz;
+    return std::stof(number, &sz);
+}   
+

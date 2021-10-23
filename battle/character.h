@@ -6,7 +6,6 @@
 #include <iomanip>
 #include <memory>
 #include "spriteData.h"
-#include "spriteSchematic.h"
 #include "../textureManager.h"
 
 using namespace std;
@@ -28,7 +27,6 @@ public:
 
 	string name;
 	BattleAnimation battleAnimation;
-	shared_ptr<SpriteSchematic> spriteSchematic;
 	
 	void display() {
 		cout << name << setw(6) << hitPoints << "/" << maxHitPoints << setw(6) << bloodPoints 

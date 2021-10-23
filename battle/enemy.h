@@ -22,8 +22,7 @@ public:
 		this->speed 			= 80;
 		this->precision 		= 92;
 		shared_ptr<SpriteData> spriteData(new SpriteData(character));
-		auto spriteSchematic = make_shared<SpriteSchematic>(character);
-		this->battleAnimation   = BattleAnimation(spriteData, textures);
+		this->battleAnimation   = BattleAnimation(spriteData, textures, character);
 	}
 };
 

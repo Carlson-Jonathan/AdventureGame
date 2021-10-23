@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "spriteData.h"
+#include "spriteSchematic.h"
 #include "../textureManager.h"
 
 using namespace std;
@@ -21,7 +22,7 @@ class BattleAnimation {
 public:
 
 	BattleAnimation() {}
-	BattleAnimation(shared_ptr<SpriteData> spriteData, shared_ptr<TextureManager> textures) {
+	BattleAnimation(shared_ptr<SpriteData> spriteData, shared_ptr<TextureManager> textures, string character) {
 		this->spriteData = spriteData;
 		this->textures   = textures;
 		rectangle.left   = spriteData->upperLeftX;
@@ -30,6 +31,7 @@ public:
 		rectangle.height = spriteData->height;
 		sprite.setTextureRect(rectangle);
 		sprite.setTexture(textures->textures[spriteData->character]);
+		auto spriteSchematic = make_shared<SpriteSchematic>(character);
 	}
 
 	shared_ptr<TextureManager> textures;
@@ -39,6 +41,7 @@ public:
 	sf::Vector2f screenPositionX;
 	sf::Vector2f screenPositionY;
 	shared_ptr<SpriteData> spriteData;
+	shared_ptr<SpriteSchematic> spriteSchematic;
 
 	void drawAndAnimateSprite(sf::RenderWindow* window);
 	void createSpriteFromSchematic();

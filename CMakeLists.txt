@@ -14,7 +14,8 @@ add_executable(Main.out
 	main.cpp 
 	battle/battle.cpp 
 	battle/battleAnimation.cpp
-	miscellaneous.cpp)
+	miscellaneous.cpp
+	battle/spriteSchematic.cpp)
 
 target_link_libraries(Main.out sfml-graphics sfml-audio)
 

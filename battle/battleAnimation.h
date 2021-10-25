@@ -45,6 +45,7 @@ public:
 
 	void drawAndAnimateSprite(sf::RenderWindow* window);
 	void createSpriteFromSchematic();
+	void drawAndAnimateSprite2(sf::RenderWindow* window);
 };
 
 #endif // BATTLEANIMATION_H

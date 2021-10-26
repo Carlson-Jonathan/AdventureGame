@@ -26,8 +26,8 @@ public:
     string name;
     string fileName;
           
-    short width;
-    short height;
+    int width;            // What are the chances we ever get 64k monitors?
+    int height;
     vector<float> speed;
 
     // Arrays of points
@@ -46,7 +46,6 @@ public:
 	vector<pair<short, short>> setSpritePointsInActionArrays(vector<string> words);
 	void displayRawCharacterData();
 	void displaySchematicData();
-
 };
 #endif // SPRITESCHEMATIC_H
 

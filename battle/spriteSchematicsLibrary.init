@@ -1,0 +1,49 @@
+###########################################################
+This is the initialization data to create sprite objects.
+Spacing between data points does not matter, though there
+must be at least 1 space to seperate different numbers.
+
+HEADER LINE (first line):
+The first line contains the name of the character
+followed by the sprite sheet filename. Next is the width
+and height of the individual images in the sprite sheet.
+Note that the name of the character should be unique as
+this is the key used to search for the correct data.
+
+OTHER LINES:
+Each additional line starts with the name of the action
+the character is performing. The float represents the 
+speed at which the images cycle (eg. an image will change
+every 0.75 seconds). The numbers following are paired
+as (X, Y) points in pixels representing the upper left
+corner of the image being displayed. Therefore there 
+should always be an even number of numbers.
+##########################################################
+
+dragon  ../Images/dragon.png  191  161
+idle    0.15f  000  161  191  161  382  161
+attack  0.00f  000  322  191  322  382  322
+defend  0.00f  000  000  000  000  000  000  000  000
+damage  0.00f  000  000  000  000  000  000  000  000
+death   0.00f  000  000  000  000  000  000  000  000
+
+cactopus  ../Images/cactopus.png  131  100
+idle    0.75f  000  000  000  131  000  262  000  393  000  524  000  655
+attack  0.00f  000  000  000  000  000  000  000  000
+defend  0.00f  000  000  000  000  000  000  000  000
+damage  0.00f  000  000  000  000  000  000  000  000
+death   0.00f  000  000  000  000  000  000  000  000
+
+heroine ../Images/heroine.png  054  072
+idle    0.10f  000  000  000  054  000  108  000  162  000  216  000  270
+attack  0.00f  000  000  000  000  000  000  000  000
+defend  0.00f  000  000  000  000  000  000  000  000
+damage  0.00f  000  000  000  000  000  000  000  000
+death   0.00f  000  000  000  000  000  000  000  000
+
+template ../Images/template.png  000  000
+idle    0.00f  000  000  000  000  000  000  000  000
+attack  0.00f  000  000  000  000  000  000  000  000
+defend  0.00f  000  000  000  000  000  000  000  000
+damage  0.00f  000  000  000  000  000  000  000  000
+death   0.00f  000  000  000  000  000  000  000  000

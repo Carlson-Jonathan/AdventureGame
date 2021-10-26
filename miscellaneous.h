@@ -4,6 +4,7 @@
 #include <iostream>
 #include <dirent.h>     // directory
 #include <vector>
+#include <sstream>
 #include <stdlib.h>     // srand, rand 
 #include <time.h>       
 using namespace std;
@@ -17,6 +18,9 @@ public:
     static vector<string> getFileTypesFromDirectory(const char *path, const string fileType);
     static vector<string> getAllFileNamesFromDirectory(const char *path);
     static bool           isFileType(const string fileName, const string fileType);
+    static float          convertStringToFloat(string number);
+    static string         shrinkWhiteSpacing(string str);
+    static vector<string> parseString(string str);
 };
 
 #endif // MISCELLANEOUS_H

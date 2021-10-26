@@ -31,6 +31,7 @@ void Battle::generateFullBattlescape() {
 	for(shared_ptr<Hero> i : playerParty) {
 		// i->display();
 		i->battleAnimation.drawAndAnimateSprite(window);
+		// i->spriteSchematic->displayRawCharacterData();
 	}
 
 	for(shared_ptr<Enemy> i : enemyGroup) {

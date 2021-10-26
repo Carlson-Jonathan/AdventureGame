@@ -1,11 +1,13 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
+
+#include "battleAnimation.h"
 #include <iostream>
 #include <iomanip>
 #include <memory>
-#include "battleAnimation.h"
 #include "spriteData.h"
 #include "../textureManager.h"
+
 using namespace std;
 
 class Character {

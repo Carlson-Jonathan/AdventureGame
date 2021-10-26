@@ -40,3 +40,28 @@ bool Miscellaneous::isFileType(const string fileName, const string fileType) {
     return found!=std::string::npos;
 }
 
+float Miscellaneous::convertStringToFloat(string number) {
+    std::string::size_type sz;
+    return std::stof(number, &sz);
+}   
+
+string Miscellaneous::shrinkWhiteSpacing(string str) {
+    size_t found = str.find("  ");
+    while(found!=string::npos) {
+        str.erase(str.begin() + found);
+        found = str.find("  ");
+    }
+    return str;
+}
+
+vector<string> Miscellaneous::parseString(string str) {
+    vector<string> words;
+    stringstream line(str);
+    string word;
+    
+    while(getline(line, word, ' ')) {
+        words.push_back(word);
+    }
+    
+    return words;            
+}

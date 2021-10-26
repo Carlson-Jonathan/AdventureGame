@@ -1,0 +1,73 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+class SpriteData {
+public:
+
+    string rawData[5];
+
+    string name,
+           fileName;
+          
+    short width,
+          height;
+
+    vector<pair<short, short>> 
+        idle,
+        attack, 
+        defend, 
+        damage, 
+        death;
+
+    void populateObject() {
+    }
+
+};
+
+int main() {
+    string line;
+    ifstream myfile("fileToRead.txt");
+    if(myfile.fail())
+    return false;
+    
+    SpriteData spriteData;
+    ifstream inFile("fileToRead.txt");
+    string tempLine;
+    string firstWord;
+    bool detected = false;
+    short lines = 0;
+
+    string character = "cactopus";
+    if(myfile.is_open()) {
+        while (getline(myfile, tempLine)) {
+            cout << "Full line: " << tempLine << endl;
+            std::size_t found = tempLine.find(' ');
+            if (found!=std::string::npos && !detected) {
+                firstWord = tempLine.substr(0, found);
+                if(firstWord == character) {
+                    cout << "You found a dragon!" << endl;
+                    detected = true;
+                }
+            }
+            if(tempLine == "" && detected)
+                break;
+            if(detected) {
+                cout << "Adding a line... ";
+                spriteData.rawData[lines] = tempLine;
+                cout << spriteData.rawData[lines] << endl;
+                lines++;
+            }
+        }
+        myfile.close();
+    }
+    else cout << "Unable to open file";
+
+    cout << "\n\n\tAll raw data:" << endl;
+    for(int i = 0; i < 6; i++) {
+        cout << spriteData.rawData[i] << endl;
+    }
+
+}
+

@@ -1,5 +1,5 @@
-#ifndef SPRITESCHEMATIC_TEST
-#define SPRITESCHEMATIC_TEST
+#ifndef SPRITESCHEMATIC_TEST_H
+#define SPRITESCHEMATIC_TEST_H
 
 #include <iostream>
 #include <vector>
@@ -27,7 +27,7 @@ public:
              << "Incorrect result on test #" << testNum << endl;
     }
 };
-#endif // SPRITESCHEMATIC_TEST
+#endif // SPRITESCHEMATIC_TEST_H
 
 /********************************************************************************
  * detectKeyword_Test()
@@ -122,13 +122,16 @@ bool SpriteSchematic_Test::setNameImageWidthHeightFromRawData_test() {
         return false;
     } 
 
-    // Test 3
+    // Test 4
     rawData.clear();    // Too big to fit in int!
     rawData.push_back("X Y 2147483648 -2147483648");
 
     try {
+        // streambuf* orig_buf = cout.rdbuf();
+        // cout.rdbuf(NULL);
         setNameImageWidthHeightFromRawData();
-    } catch(exception) {
+        // cout.rdbuf(orig_buf);
+    } catch(int exception) {
         width = 3712;
         height = 3911;
     }
@@ -138,7 +141,28 @@ bool SpriteSchematic_Test::setNameImageWidthHeightFromRawData_test() {
     check3 = (width == 3712);
     check4 = (height == 3911);
     if(!(check1 && check3 && check3 && check4)) {
-        printFailMessage("setNameImageWidthHeightFromRawData_test", 3);
+        printFailMessage("setNameImageWidthHeightFromRawData_test", 4);
+        displayRawCharacterData();
+        return false;
+    } 
+
+    // Test 5
+    rawData.clear(); // Invalid text entry
+    rawData.push_back("X Y Hello World!");
+
+    try {
+        setNameImageWidthHeightFromRawData();
+    } catch(int exception) {
+        width = 3712;
+        height = 3911;
+    }
+
+    check1 = (name == "X");
+    check2 = (fileName == "Y");
+    check3 = (width == 3712);
+    check4 = (height == 3911);
+    if(!(check1 && check3 && check3 && check4)) {
+        printFailMessage("setNameImageWidthHeightFromRawData_test", 5);
         displayRawCharacterData();
         return false;
     } 

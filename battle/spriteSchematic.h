@@ -12,6 +12,7 @@ public:
 
 	SpriteSchematic() {}
 	SpriteSchematic(string character) {
+		this->character = character;
 		getDataFromLibraryAndSetRawData(character);
 		setNameImageWidthHeightFromRawData();
 		setSpeedFromRawData();
@@ -23,6 +24,7 @@ public:
     vector<string> rawData;
     vector<vector<string>> formattedData;
 
+    string character;
     string name;
     string fileName;
           
@@ -41,6 +43,7 @@ public:
     void getDataFromLibraryAndSetRawData(string keyword);
 	void formatRawData();
 	void setNameImageWidthHeightFromRawData();
+	void tryToSetNameImageWidthHeightFromRawData();
 	void setSpeedFromRawData();
     bool detectKeyword(string line, string keyword);
 	vector<pair<short, short>> setSpritePointsInActionArrays(vector<string> words);

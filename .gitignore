@@ -4,3 +4,4 @@
 *.gch
 build/
 .vscode/
+test.cpp

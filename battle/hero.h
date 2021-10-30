@@ -5,7 +5,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "spriteData.h"
 
 using namespace std;
 
@@ -13,7 +12,7 @@ class Hero : public Character {
 public:
 
 	Hero() {}
-	Hero(shared_ptr<TextureManager> textures, string character) {
+	Hero(shared_ptr<TextureManager> textures, string character, shared_ptr<Initializer> globalData) {
 		this->maxHitPoints 		= 100;
 		this->hitPoints 		= 85;
 		this->maxBloodPoints	= 90;
@@ -23,7 +22,7 @@ public:
 		this->speed 			= 80;
 		this->precision 		= 92;
 		shared_ptr<SpriteData> spriteData(new SpriteData(character));
-		this->battleAnimation   = BattleAnimation(spriteData, textures, character);
+		this->battleAnimation   = BattleAnimation(spriteData, textures, character, globalData);
 	}
 };
 

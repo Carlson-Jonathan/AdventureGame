@@ -5,6 +5,7 @@
 
 #include "battle/battle.h"
 #include "battle/character.h"
+#include "initializer.h"
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
@@ -17,6 +18,8 @@
 using namespace std;
 
 int main() {
+
+	auto globalData = make_shared<Initializer>();
 
 	short screenWidth  = 1333,
 		   screenHeight = 750,
@@ -51,11 +54,11 @@ int main() {
    // 	party[i]->name = "Member " + to_string(i + 1);
    // }
 
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "heroine")));
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus")));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "heroine", globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "dragon", globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus", globalData)));
 
-   Battle battle(playerParty, pWindow, textures);
+   Battle battle(playerParty, pWindow, textures, globalData);
 
    // Master window loop. 
    while (pWindow->isOpen()) {

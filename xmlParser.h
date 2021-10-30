@@ -36,7 +36,7 @@ private:
 	void populatePublicNodeMaps(map<string, XMLElement*> & map, XMLElement* node);
 	void populateAllMaps();
 	void printNodeData(XMLElement* node);
-	void printMapData(map<string, XMLElement*>);
+	void printMapData(map<string, XMLElement*> map);
 };
 #endif // XMLPARSER_H
 

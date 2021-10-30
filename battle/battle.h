@@ -6,6 +6,7 @@
 #include "enemy.h"
 #include "../gameSound.h"
 #include "hero.h"
+#include "../initializer.h"
 #include <iostream>
 #include <map>
 #include <memory>
@@ -19,19 +20,22 @@ using namespace std;
 class Battle {
 public:
 	Battle() {}
-	Battle(vector<shared_ptr<Hero>> playerParty, sf::RenderWindow* window, shared_ptr<TextureManager> textures) {
+	Battle(vector<shared_ptr<Hero>> playerParty, sf::RenderWindow* window, 
+		   shared_ptr<TextureManager> textures, shared_ptr<Initializer> globalData) {
 		this->playerParty = playerParty;
 		this->window = window;
 		this->textures = textures;
 
-   	 	generateEnemyGroup();
+   	 	generateEnemyGroup(globalData);
    	 	setScreenPlacementForCharacters();
    	 	gameSound.loadAndPlayRandomBattleSong();
+   	 	// this->globalData = globalData;
 	}
 
     GameSound gameSound;  
 
 	shared_ptr<TextureManager> textures;
+	// shared_ptr<Initializer> globalData;
     sf::Sprite sprite;
 	sf::RenderWindow* window;
 
@@ -59,7 +63,7 @@ public:
 	string background = "forrestBackground";
 	string musicFile = "Sounds/Music/battle1.ogg";
 
-	void generateEnemyGroup();
+	void generateEnemyGroup(shared_ptr<Initializer> globalData);
 	void drawBackground();
 	void setScreenPlacementForCharacters();
 	void generateFullBattlescape();

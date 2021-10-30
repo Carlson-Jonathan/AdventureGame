@@ -18,7 +18,7 @@ public:
 		setSpeedFromRawData();
 		formatRawData();
 		populateEntireSpriteSchematic();
-		displaySchematicData();
+		// displaySchematicData();
 	}
 
     vector<string> rawData;

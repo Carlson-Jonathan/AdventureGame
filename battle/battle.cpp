@@ -41,8 +41,8 @@ void Battle::generateFullBattlescape() {
 }
 
 
-void Battle::generateEnemyGroup() {
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "dragon")));
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "cactopus")));
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "heroine")));
+void Battle::generateEnemyGroup(shared_ptr<Initializer> globalData) {
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "dragon", globalData)));
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "cactopus", globalData)));
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "heroine", globalData)));
 }

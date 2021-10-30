@@ -1,0 +1,7 @@
+*.o
+*.out
+*.sh
+*.gch
+build/
+.vscode/
+test.cpp

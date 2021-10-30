@@ -1,17 +1,17 @@
 #include <iostream>
-
-#include <SFML/Graphics.hpp>
-#include "textureManager.h"
-#include "battle/spriteData.h"
-
+#include <memory>
+#include "tinyxml2.h"
+#include "xmlParser.h"
 using namespace std;
 
 int main() {
 
+	auto xmlParser = make_shared<XMLParser>();
 
-	SpriteData spriteData("enemies", "dragon");
-	spriteData.display();
+	XMLElement* dragon;
 
+	dragon = xmlParser->getMonster("dragon");
+	cout << dragon->FirstChildElement("fileName")->GetText() << endl;
 
 	return 0;
 }

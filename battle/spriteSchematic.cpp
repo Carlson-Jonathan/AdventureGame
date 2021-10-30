@@ -35,6 +35,18 @@ void SpriteSchematic::getDataFromLibraryAndSetRawData(string keyword) {
 }
 
 void SpriteSchematic::setNameImageWidthHeightFromRawData() {
+	try {
+		tryToSetNameImageWidthHeightFromRawData();
+	}
+	catch (exception) {
+		cerr << "Error loading 'RawData' for sprit schematic '" << character << "'!" << endl;
+		cerr << "Types of first line of character in library should be <string, string, int, int>\n";
+		cerr << "Current line = <" << rawData[0] << ">" << endl;
+		throw 22;
+	}
+}
+
+void SpriteSchematic::tryToSetNameImageWidthHeightFromRawData() {
     stringstream word(rawData[0]);
     string width, height;
     word >> name >> fileName >> width >> height;

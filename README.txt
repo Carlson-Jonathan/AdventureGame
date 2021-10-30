@@ -11,7 +11,7 @@ the code so things dont get so tangled. I need to:
 ####################################################################################################
 # COMPILE INSTRUCTIONS(g++):
 ####################################################################################################
-Run the below command. You man need to add missing ".cpp" files to the first line:
+Run the below command. You may need to add missing ".cpp" files to the first line:
 
 g++ -c main.cpp battle/battle.cpp battle/battleAnimation.cpp
 g++ main.o battle.o battleAnimation.o -o executable.out -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
@@ -46,7 +46,7 @@ Segmentation Fault Finder:
 ########################
 To Do:
 ########################
-Fill in the spriteSchematicsLibrary.init with real data to make the sprites work.
+Set type checks in spriteSchematic.h so you know if there is an invalid type in the library.
 Implement the spriteSchematic as the replacement of spriteData.
 Create a .cpp file and drop the spriteSchematics functions into it.
 

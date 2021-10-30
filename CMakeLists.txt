@@ -15,7 +15,9 @@ add_executable(Main.out
 	battle/battle.cpp 
 	battle/battleAnimation.cpp
 	miscellaneous.cpp
-	battle/spriteSchematic.cpp)
+	battle/spriteSchematic.cpp
+	xmlParser.cpp
+	tinyxml2.cpp)
 
 target_link_libraries(Main.out sfml-graphics sfml-audio)
 

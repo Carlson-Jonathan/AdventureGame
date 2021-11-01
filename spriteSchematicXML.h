@@ -17,7 +17,7 @@ public:
 		this->character = character;
 		this->globalData = globalData;
 		setCharacterNode();
-		populateSchematic();
+		populateEntireSchematic();
 		printSchematicData();
 	}
 
@@ -26,7 +26,7 @@ public:
     string fileName;
     int width;           
     int height;
-    vector<float> speed;
+    vector<float> actionSpeeds;
 
     // Arrays of points
     vector<pair<short, short>> idle;
@@ -37,11 +37,9 @@ public:
 
     shared_ptr<Initializer> globalData;
     XMLElement* characterNode;
-
-
-    // void populateSchematic();
-    // void printSchematicData();
-    // void getAxes();
+    XMLElement* action;
+    XMLElement* X_Axes;
+    XMLElement* Y_Axes;
 
     void setCharacterNode() {
 		if(character == "heroine") 
@@ -50,27 +48,68 @@ public:
 			characterNode = globalData->xmlParser->getMonster(character);
     }
 
-	void populateSchematic() {
+	void populateEntireSchematic() {
 		this->name     = characterNode->FirstChildElement("name")->GetText();
 		this->fileName = characterNode->FirstChildElement("fileName")->GetText();
 		this->width    = stoi(characterNode->FirstChildElement("imgWidth")->GetText());
 		this->height   = stoi(characterNode->FirstChildElement("imgHeight")->GetText());
+		populatePointsInAllActions();
+	}
+
+	void populateActionPoints(char* actionName) {
+		XMLElement* Xnode = characterNode->FirstChildElement(actionName)->FirstChildElement("X_axes")->FirstChildElement();
+		XMLElement* Ynode = characterNode->FirstChildElement(actionName)->FirstChildElement("Y_axes")->FirstChildElement();
+
+		// map<char* k, vector<pair<short, short> v> myMap = {
+		// 	{}
+		// }
+
+	    for(;Xnode; Xnode = Xnode->NextSiblingElement(), Ynode = Ynode->NextSiblingElement()) {	        
+	        idle.push_back({{short(stoi(Xnode->GetText()))}, {short(stoi(Ynode->GetText()))}});
+		}
+	}	
+
+	void populatePointsInAllActions() {
+		char idl[] = "idle";
+		char att[] = "attack";
+		char def[] = "defend";
+		char dmg[] = "takeDamage";
+		char dth[] = "death";
+
+		if(name == "dragon") {
+			populateActionPoints(idl);
+			populateActionPoints(att);
+		}
+	}
+
+	void printActionPoints(vector<pair<short, short>> points) {
+		for(auto i : points) {
+			cout << "{" << i.first << "," << i.second << "}, ";
+		}
 	}
 
 	void printSchematicData() {
 		cout << "Name = " << name << endl;
 		cout << "FileName = " << fileName << endl;
 		cout << "Width = " << width << endl;
-		cout << "Height = " << height << "\n\n";
+		cout << "Height = " << height << endl;
 
-		// XMLElement* xAxes = characterNode->FirstChildElement("idle");
-	    // for(XMLElement* child = characterNode->FirstChildElement("idle"); 
-	    //     child != NULL; 
-	    //     child = child->NextSiblingElement()) {	        
-	    //         cout << "\t" << child->FirstChildElement("X1")->GetText() << endl;
-	    // }
+		cout << "idle points: ";
+		printActionPoints(idle);
+
+		cout << "\nattack points: ";
+		printActionPoints(attack);
+
+		cout << "\ndefend points: ";
+		printActionPoints(defend);
+
+		cout << "\ntakeDamage points: ";
+		printActionPoints(takeDamage);
+
+		cout << "\ndeath points: ";
+		printActionPoints(death);
+		cout << endl;
 
 	}
-
 };
 #endif // SPRITESCHEMATICXML_H

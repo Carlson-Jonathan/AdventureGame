@@ -56,16 +56,12 @@ public:
 		populatePointsInAllActions();
 	}
 
-	void populateActionPoints(char* actionName) {
+	void populateActionPoints(char* actionName, vector<pair<short, short>>* pointArray) {
 		XMLElement* Xnode = characterNode->FirstChildElement(actionName)->FirstChildElement("X_axes")->FirstChildElement();
 		XMLElement* Ynode = characterNode->FirstChildElement(actionName)->FirstChildElement("Y_axes")->FirstChildElement();
 
-		// map<char* k, vector<pair<short, short> v> myMap = {
-		// 	{}
-		// }
-
-	    for(;Xnode; Xnode = Xnode->NextSiblingElement(), Ynode = Ynode->NextSiblingElement()) {	        
-	        idle.push_back({{short(stoi(Xnode->GetText()))}, {short(stoi(Ynode->GetText()))}});
+	    for(;Xnode; Xnode = Xnode->NextSiblingElement(), Ynode = Ynode->NextSiblingElement()) {	  
+	        pointArray->push_back({{short(stoi(Xnode->GetText()))}, {short(stoi(Ynode->GetText()))}});
 		}
 	}	
 
@@ -73,18 +69,21 @@ public:
 		char idl[] = "idle";
 		char att[] = "attack";
 		char def[] = "defend";
-		char dmg[] = "takeDamage";
+		char dmg[] = "damage";
 		char dth[] = "death";
 
-		if(name == "dragon") {
-			populateActionPoints(idl);
-			populateActionPoints(att);
+		if(name != "heroine") {
+			populateActionPoints(idl, &idle);
+			populateActionPoints(att, &attack);
+			populateActionPoints(def, &defend);
+			populateActionPoints(dmg, &takeDamage);
+			populateActionPoints(dth, &death);
 		}
 	}
 
 	void printActionPoints(vector<pair<short, short>> points) {
 		for(auto i : points) {
-			cout << "{" << i.first << "," << i.second << "}, ";
+			cout << "{" << i.first << ", " << i.second << "}, ";
 		}
 	}
 

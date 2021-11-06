@@ -18,8 +18,9 @@ using namespace std;
 
 int main() {
 
-	auto globalData = make_shared<Initializer>();
-	sf::RenderWindow* window = &globalData->window;
+	// auto globalData = make_shared<Initializer>();
+	Initializer globalData;
+	sf::RenderWindow* window = &globalData.window;
 	
    // Create your objects
    vector<shared_ptr<Hero>> playerParty;
@@ -43,9 +44,9 @@ int main() {
 
       	// Catches window resize events. Adjusts resolution to match window resize.
          if (event.type == sf::Event::Resized) {
-          	globalData->screenWidth  = event.size.width;
-          	globalData->screenHeight = event.size.height;
-           	sf::FloatRect visibleArea(0, 0, globalData->screenWidth, globalData->screenHeight);
+          	globalData.screenWidth  = event.size.width;
+          	globalData.screenHeight = event.size.height;
+           	sf::FloatRect visibleArea(0, 0, globalData.screenWidth, globalData.screenHeight);
            	window->setView(sf::View(visibleArea));
          }
       }

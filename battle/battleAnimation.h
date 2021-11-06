@@ -25,10 +25,10 @@ public:
 
 	BattleAnimation() {}
 	BattleAnimation(shared_ptr<SpriteData> spriteData, string character, 
-		            shared_ptr<Initializer> globalData) {
+		            Initializer & globalData) {
 
 		this->spriteData = spriteData;
-		this->textures   = &globalData->textures;
+		this->textures   = &globalData.textures;
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
 		rectangle.width  = spriteData->width;

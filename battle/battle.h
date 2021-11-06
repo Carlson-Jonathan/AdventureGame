@@ -21,7 +21,7 @@ class Battle {
 public:
 	Battle() {}
 	Battle(vector<shared_ptr<Hero>> playerParty, sf::RenderWindow* window, 
-		   shared_ptr<Initializer> globalData) {
+		   Initializer & globalData) {
 		this->playerParty = playerParty;
 		this->window = window;
 		this->textures = textures;
@@ -29,7 +29,7 @@ public:
    	 	generateEnemyGroup(globalData);
    	 	setScreenPlacementForCharacters();
    	 	gameSound.loadAndPlayRandomBattleSong();
-   	 	this->textures = &globalData->textures;
+   	 	this->textures = &globalData.textures;
 	}
 
     GameSound gameSound;  
@@ -59,7 +59,7 @@ public:
 	string background = "forrestBackground";
 	string musicFile = "Sounds/Music/battle1.ogg";
 
-	void generateEnemyGroup(shared_ptr<Initializer> globalData);
+	void generateEnemyGroup(Initializer & globalData);
 	void drawBackground();
 	void setScreenPlacementForCharacters();
 	void generateFullBattlescape();

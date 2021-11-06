@@ -19,8 +19,6 @@ void XMLParser::getAndVerifySpriteDataFromXMLFile(const char* file) {
 XMLElement* XMLParser::initializeAndVerifyXMLNode(char* element, XMLElement* child, XMLElement* parent) {
 	try {
 
-		if(!parent) return xmlDocument.FirstChildElement(element);
-
 		child = parent->FirstChildElement(element);
 
 		if(!child)  {
@@ -39,16 +37,17 @@ XMLElement* XMLParser::initializeAndVerifyXMLNode(char* element, XMLElement* chi
 
 void XMLParser::initializeAllNodes() {
 
-	char node1[] = "characters";
 	char node2[] = "monsters";
 	char node3[] = "heroes";
 
-	charactersNode = initializeAndVerifyXMLNode(node1, charactersNode, charactersNode);
+	charactersNode = xmlDocument.FirstChildElement("characters");
+	if(!charactersNode) cout << "Characters node did not set" << endl;
+
 	monstersNode   = initializeAndVerifyXMLNode(node2, monstersNode, charactersNode);
 	heroesNode 	   = initializeAndVerifyXMLNode(node3, heroesNode, charactersNode);
 }
 
-void XMLParser::populatePublicNodeMaps(map<string, XMLElement*> & map, XMLElement* node) {
+void XMLParser::populateNodeMap(map<string, XMLElement*> & map, XMLElement* node) {
 	string name;
 	for(XMLElement* child = node->FirstChildElement(); 
 	    child; 
@@ -59,8 +58,8 @@ void XMLParser::populatePublicNodeMaps(map<string, XMLElement*> & map, XMLElemen
 }
 
 void XMLParser::populateAllMaps() {
-	populatePublicNodeMaps(monsters, monstersNode);
-	populatePublicNodeMaps(heroes, heroesNode);
+	populateNodeMap(monsters, monstersNode);
+	populateNodeMap(heroes, heroesNode);
 }
 
 XMLElement* XMLParser::getMonster(string monster) {

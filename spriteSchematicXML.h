@@ -13,9 +13,9 @@ using namespace std;
 class SpriteSchematicXML {
 public:
 	SpriteSchematicXML() {}
-	SpriteSchematicXML(string character, shared_ptr<Initializer> globalData) {
+	SpriteSchematicXML(string character, Initializer & globalData) {
 		this->character = character;
-		this->globalData = globalData;
+		this->globalData = &globalData;
 		setCharacterNode();
 		populateEntireSchematic();
 		printSchematicData();
@@ -35,7 +35,7 @@ public:
     vector<pair<short, short>> takeDamage;
     vector<pair<short, short>> death;
 
-    shared_ptr<Initializer> globalData;
+    Initializer* globalData;
     XMLElement* characterNode;
     XMLElement* action;
     XMLElement* X_Axes;

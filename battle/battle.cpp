@@ -41,7 +41,7 @@ void Battle::generateFullBattlescape() {
 }
 
 
-void Battle::generateEnemyGroup(shared_ptr<Initializer> globalData) {
+void Battle::generateEnemyGroup(Initializer & globalData) {
 	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("dragon", globalData)));
 	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("cactopus", globalData)));
 	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("heroine", globalData)));

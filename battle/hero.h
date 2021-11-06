@@ -12,7 +12,7 @@ class Hero : public Character {
 public:
 
 	Hero() {}
-	Hero(string character, shared_ptr<Initializer> globalData) {
+	Hero(string character, Initializer & globalData) {
 		this->maxHitPoints 		= 100;
 		this->hitPoints 		= 85;
 		this->maxBloodPoints	= 90;

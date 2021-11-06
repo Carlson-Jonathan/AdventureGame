@@ -10,7 +10,7 @@ using namespace std;
 class Initializer {
 public:
 
-	Initializer() : window(sf::VideoMode(screenWidth, screenHeight), "Jon rules!") {
+	Initializer() : window(sf::VideoMode(screenWidth, screenHeight), "Jon's New Adventure Game") {
 		window.setFramerateLimit(frameRate);
 	}
 

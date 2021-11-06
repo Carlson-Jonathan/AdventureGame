@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef SPRITESCHEMATIC_H
 #define SPRITESCHEMATIC_H
 

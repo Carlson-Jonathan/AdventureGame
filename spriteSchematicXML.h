@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef SPRITESCHEMATICXML_H
 #define SPRITESCHEMATICXML_H
 
@@ -34,6 +36,32 @@ public:
     vector<pair<short, short>> defend;
     vector<pair<short, short>> takeDamage;
     vector<pair<short, short>> death;
+
+	void printSchematicData() {
+		cout << "Name = " << name << endl;
+		cout << "FileName = " << fileName << endl;
+		cout << "Width = " << width << endl;
+		cout << "Height = " << height << endl;
+
+		cout << "idle points: ";
+		printActionPoints(idle);
+
+		cout << "\nattack points: ";
+		printActionPoints(attack);
+
+		cout << "\ndefend points: ";
+		printActionPoints(defend);
+
+		cout << "\ntakeDamage points: ";
+		printActionPoints(takeDamage);
+
+		cout << "\ndeath points: ";
+		printActionPoints(death);
+		cout << endl;
+
+	}
+
+private:
 
     Initializer* globalData;
     XMLElement* characterNode;
@@ -87,28 +115,5 @@ public:
 		}
 	}
 
-	void printSchematicData() {
-		cout << "Name = " << name << endl;
-		cout << "FileName = " << fileName << endl;
-		cout << "Width = " << width << endl;
-		cout << "Height = " << height << endl;
-
-		cout << "idle points: ";
-		printActionPoints(idle);
-
-		cout << "\nattack points: ";
-		printActionPoints(attack);
-
-		cout << "\ndefend points: ";
-		printActionPoints(defend);
-
-		cout << "\ntakeDamage points: ";
-		printActionPoints(takeDamage);
-
-		cout << "\ndeath points: ";
-		printActionPoints(death);
-		cout << endl;
-
-	}
 };
 #endif // SPRITESCHEMATICXML_H

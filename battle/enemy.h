@@ -1,10 +1,10 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef ENEMY_H
 #define ENEMY_H
 
 #include "character.h"
 #include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 
 using namespace std;
 
@@ -21,7 +21,7 @@ public:
 		this->essencePoints 	= 46;
 		this->speed 			= 80;
 		this->precision 		= 92;
-		auto spriteData = make_shared<SpriteData>(character);
+		auto spriteData         = make_shared<SpriteData>(character);
 		this->battleAnimation   = BattleAnimation(spriteData, character, globalData);
 	}
 };

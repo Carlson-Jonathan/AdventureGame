@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef HERO_H
 #define HERO_H
 
@@ -22,7 +24,7 @@ public:
 		this->speed 			= 80;
 		this->precision 		= 92;
 		auto spriteData = make_shared<SpriteData>(character);
-		this->battleAnimation   = BattleAnimation(spriteData, character, globalData);
+		this->battleAnimation = BattleAnimation(spriteData, character, globalData);
 	}
 };
 

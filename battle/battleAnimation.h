@@ -1,4 +1,5 @@
 // Copyright Jonathan Carlson 2021
+
 #ifndef BATTLEANIMATION_H
 #define BATTLEANIMATION_H
 
@@ -24,8 +25,7 @@ class BattleAnimation {
 public:
 
 	BattleAnimation() {}
-	BattleAnimation(shared_ptr<SpriteData> spriteData, string character, 
-		            Initializer & globalData) {
+	BattleAnimation(shared_ptr<SpriteData> spriteData, string character, Initializer & globalData) {
 
 		this->spriteData = spriteData;
 		this->textures   = &globalData.textures;
@@ -47,9 +47,9 @@ public:
 	shared_ptr<SpriteData> spriteData;
 	shared_ptr<SpriteSchematicXML> spriteSchematicXML;
 
-	void drawAndAnimateSprite(sf::RenderWindow* window);
+	void drawAndAnimateSprite(sf::RenderWindow & window);
 	void createSpriteFromSchematic();
-	void drawAndAnimateSprite2(sf::RenderWindow* window);
+	void drawAndAnimateSprite2(sf::RenderWindow & window);
 };
 
 #endif // BATTLEANIMATION_H

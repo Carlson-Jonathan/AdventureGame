@@ -1,9 +1,9 @@
 #include "battle.h"
 
 void Battle::drawBackground() {
-	sprite.setTexture(textures->textures[background]);  
+	sprite.setTexture(globalData->textures.textures[background]);  
 	sprite.setOrigin(0, 0);		
-	window->draw(sprite);
+	globalData->window.draw(sprite);
 }
 
 
@@ -30,19 +30,19 @@ void Battle::generateFullBattlescape() {
 	drawBackground();
 	for(shared_ptr<Hero> i : playerParty) {
 		// i->display();
-		i->battleAnimation.drawAndAnimateSprite(window);
+		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 		// i->spriteSchematic->displayRawCharacterData();
 	}
 
 	for(shared_ptr<Enemy> i : enemyGroup) {
 		// i->display();
-		i->battleAnimation.drawAndAnimateSprite(window);
+		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 	}
 }
 
 
 void Battle::generateEnemyGroup(Initializer & globalData) {
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("dragon", globalData)));
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("dragon",   globalData)));
 	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("cactopus", globalData)));
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("heroine", globalData)));
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("heroine",  globalData)));
 }

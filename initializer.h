@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef INITIALIZER_H
 #define INITIALIZER_H
 
@@ -19,8 +21,8 @@ public:
 	short frameRate    = 60;
 
 	sf::RenderWindow window;
-	TextureManager textures;
-	XMLParser xmlParser;
+	TextureManager   textures;
+	XMLParser        xmlParser;
 
 };
 

@@ -1,7 +1,7 @@
 #include "battle.h"
 
-void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow* window) {
-	window->draw(sprite);
+void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow & window) {
+	window.draw(sprite);
 
 	if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
 
@@ -16,8 +16,8 @@ void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow* window) {
 	}
 }
 
-void BattleAnimation::drawAndAnimateSprite2(sf::RenderWindow* window) {
-	window->draw(sprite);
+void BattleAnimation::drawAndAnimateSprite2(sf::RenderWindow & window) {
+	window.draw(sprite);
 	// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
 
 	if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {

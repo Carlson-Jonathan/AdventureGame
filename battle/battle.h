@@ -1,4 +1,5 @@
 // Copyright Jonathan Carlson 2021
+
 #ifndef BATTLE_H
 #define BATTLE_H
 
@@ -8,7 +9,7 @@
 #include "hero.h"
 #include "../initializer.h"
 #include <iostream>
-#include <map>
+// #include <map>
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -20,23 +21,25 @@ using namespace std;
 class Battle {
 public:
 	Battle() {}
-	Battle(vector<shared_ptr<Hero>> playerParty, sf::RenderWindow* window, 
-		   Initializer & globalData) {
+	Battle(vector<shared_ptr<Hero>> playerParty, Initializer & globalData) {
 		this->playerParty = playerParty;
-		this->window = window;
-		this->textures = textures;
+		this->globalData = &globalData;
 
    	 	generateEnemyGroup(globalData);
    	 	setScreenPlacementForCharacters();
    	 	gameSound.loadAndPlayRandomBattleSong();
-   	 	this->textures = &globalData.textures;
 	}
+
+	void generateFullBattlescape();
+
+private:
 
     GameSound gameSound;  
 
-	TextureManager* textures;
+    Initializer*       globalData;
+	TextureManager*    textures;
+	sf::RenderWindow*  window;
     sf::Sprite sprite;
-	sf::RenderWindow* window;
 
 	vector<sf::Vector2f> heroScreenPositions = {
 		{sf::Vector2f(400.f, 300.f)}, // top
@@ -62,7 +65,6 @@ public:
 	void generateEnemyGroup(Initializer & globalData);
 	void drawBackground();
 	void setScreenPlacementForCharacters();
-	void generateFullBattlescape();
 
 };
 

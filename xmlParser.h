@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef XMLPARSER_H
 #define XMLPARSER_H
 

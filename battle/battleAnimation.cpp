@@ -36,3 +36,7 @@ void BattleAnimation::drawAndAnimateSprite2(sf::RenderWindow & window) {
 	// cout << "Sprite rectangle position: " << rectangle.left << endl;
 	// spriteData->display();
 }
+
+void BattleAnimation::testingXML() {
+	// cout << "XML test: " << spriteSchematicXML.attack[2].second << endl;
+}

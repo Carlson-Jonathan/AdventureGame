@@ -6,6 +6,7 @@
 #include <fstream>
 #include "initializer.h"
 #include <iostream>
+#include "miscellaneous.h"
 #include "tinyxml2.h"
 #include <vector>
 
@@ -49,8 +50,9 @@ private:
 
     void setCharacterNode();
 	void populateEntireSchematic();
-	void populateActionPoints(char* actionName, vector<pair<short, short>>* pointArray);
+	void populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray);
 	void populatePointsInAllActions();
+	void populateActionSpeeds(char* actionName);
 	void printActionPoints(vector<pair<short, short>> points);
 };
 

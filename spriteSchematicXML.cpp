@@ -16,12 +16,16 @@ void SpriteSchematicXML::populateEntireSchematic() {
 
 /*------------------------------------------------------------------------------------------------*/
 
-void SpriteSchematicXML::populateActionPoints(char* actionName, vector<pair<short, short>>* pointArray) {
-	XMLElement* Xnode = characterNode->FirstChildElement(actionName)->FirstChildElement("X_axes")->FirstChildElement();
-	XMLElement* Ynode = characterNode->FirstChildElement(actionName)->FirstChildElement("Y_axes")->FirstChildElement();
+void SpriteSchematicXML::populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray) {
+
+	XMLElement* Xnode = characterNode->FirstChildElement(actionName)->
+	                    FirstChildElement("X_axes")->FirstChildElement();
+
+	XMLElement* Ynode = characterNode->FirstChildElement(actionName)->
+	                    FirstChildElement("Y_axes")->FirstChildElement();
 
     for(;Xnode; Xnode = Xnode->NextSiblingElement(), Ynode = Ynode->NextSiblingElement()) {	  
-        pointArray->push_back({{short(stoi(Xnode->GetText()))}, {short(stoi(Ynode->GetText()))}});
+        pointArray.push_back({{short(stoi(Xnode->GetText()))}, {short(stoi(Ynode->GetText()))}});
 	}
 }	
 
@@ -34,15 +38,35 @@ void SpriteSchematicXML::populatePointsInAllActions() {
 	char dmg[] = "damage";
 	char dth[] = "death";
 
-	if(name != "heroine") {
-		populateActionPoints(idl, &idle);
-		populateActionPoints(att, &attack);
-		populateActionPoints(def, &defend);
-		populateActionPoints(dmg, &takeDamage);
-		populateActionPoints(dth, &death);
-	}
+	populateActionPoints(idl, idle);
+	populateActionPoints(att, attack);
+	populateActionPoints(def, defend);
+	populateActionPoints(dmg, takeDamage);
+	populateActionPoints(dth, death);
+
+	populateActionSpeeds(idl);
+	populateActionSpeeds(att);
+	populateActionSpeeds(def);
+	populateActionSpeeds(dmg);
+	populateActionSpeeds(dth);
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
+void SpriteSchematicXML::populateActionSpeeds(char* actionName) {
+
+	const char* actionSpeed = characterNode->FirstChildElement(actionName)->
+					  FirstChildElement("animationSpeed")->GetText();
+
+	if(!actionSpeed) {
+		cout << "Error retrieving action speed for " << character << ":" << actionName << endl;
+		throw perror;
+	}
+
+	string sActionSpeed = actionSpeed;					  
+
+	actionSpeeds.push_back(Miscellaneous::convertStringToFloat(actionSpeed));
+}
 
 
 /*################################################################################################*/
@@ -61,18 +85,23 @@ void SpriteSchematicXML::printSchematicData() {
 	cout << "Width = " << width << endl;
 	cout << "Height = " << height << endl;
 
+	cout << "idle speed: " << actionSpeeds[0] << endl;
 	cout << "idle points: ";
 	printActionPoints(idle);
 
+	cout << "idle speed: " << actionSpeeds[1] << endl;
 	cout << "\nattack points: ";
 	printActionPoints(attack);
 
+	cout << "idle speed: " << actionSpeeds[2] << endl;
 	cout << "\ndefend points: ";
 	printActionPoints(defend);
 
+	cout << "idle speed: " << actionSpeeds[3] << endl;
 	cout << "\ntakeDamage points: ";
 	printActionPoints(takeDamage);
 
+	cout << "idle speed: " << actionSpeeds[4] << endl;
 	cout << "\ndeath points: ";
 	printActionPoints(death);
 	cout << endl;

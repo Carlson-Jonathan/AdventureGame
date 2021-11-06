@@ -20,10 +20,10 @@ class BattleAnimation {
 public:
 
 	BattleAnimation() {}
-	BattleAnimation(shared_ptr<SpriteData> spriteData, string character, Initializer & globalData) {
+	BattleAnimation(shared_ptr<SpriteData> spriteData, string character, Initializer & globalData) :
+	spriteSchematicXML(character, globalData) {
 
 		this->spriteData = spriteData;
-		this->textures   = &globalData.textures;
 
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
@@ -31,11 +31,11 @@ public:
 		rectangle.height = spriteData->height;
 
 		sprite.setTextureRect(rectangle);
-		sprite.setTexture(textures->textures[spriteData->character]);
-		spriteSchematicXML = make_shared<SpriteSchematicXML>(character, globalData);
+		sprite.setTexture(globalData.textures.textures[character]);
+		testingXML();
 	}
 
-	TextureManager* textures;
+	SpriteSchematicXML spriteSchematicXML;
 
 	sf::IntRect rectangle;
 	sf::Sprite sprite;
@@ -44,11 +44,14 @@ public:
 	sf::Vector2f screenPositionY;
 
 	shared_ptr<SpriteData> spriteData;
-	shared_ptr<SpriteSchematicXML> spriteSchematicXML;
+	// shared_ptr<SpriteSchematicXML> spriteSchematicXML;
 
 	void drawAndAnimateSprite(sf::RenderWindow & window);
 	void createSpriteFromSchematic();
 	void drawAndAnimateSprite2(sf::RenderWindow & window);
+
+	void testingXML();
+
 };
 
 #endif // BATTLEANIMATION_H

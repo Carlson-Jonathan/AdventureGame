@@ -23,8 +23,7 @@ int main() {
 	short screenWidth  = 1333,
 		   screenHeight = 750,
 		   frameRate    = 60,
-		   textSize     = 32,
-		   partySize    = 1;
+		   textSize     = 32;
 
    sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Examples");
 	sf::RenderWindow* pWindow = &window;
@@ -34,7 +33,7 @@ int main() {
 	sf::Clock clock;
 	
 	pWindow->setFramerateLimit(frameRate);
-	auto textures = make_shared<TextureManager>();
+	// auto textures = make_shared<TextureManager>();
 
    // Fonts and text
 	if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 
@@ -49,11 +48,11 @@ int main() {
    // Create your objects
    vector<shared_ptr<Hero>> playerParty;
 
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "heroine", globalData)));
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "dragon", globalData)));
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus", globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("heroine", globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("dragon", globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("cactopus", globalData)));
 
-   Battle battle(playerParty, pWindow, textures, globalData);
+   Battle battle(playerParty, pWindow, globalData);
 
    // Master window loop. 
    while (pWindow->isOpen()) {

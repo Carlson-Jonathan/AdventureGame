@@ -5,6 +5,8 @@
 #include "tinyxml2.h"
 #include "xmlParser.h"
 #include <memory>
+#include "textureManager.h"
+
 using namespace std;
 
 class Initializer {
@@ -12,10 +14,12 @@ public:
 
 	Initializer() {
 		xmlParser = make_shared<XMLParser>();
+		textures  = make_shared<TextureManager>();
 	}
 
-	shared_ptr<XMLParser> xmlParser;
 
+	shared_ptr<XMLParser> xmlParser;
+	shared_ptr<TextureManager> textures;
 
 };
 

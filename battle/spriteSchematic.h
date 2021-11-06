@@ -28,7 +28,7 @@ public:
     string name;
     string fileName;
           
-    int width;            // What are the chances we ever get 64k monitors?
+    int width;            
     int height;
     vector<float> speed;
 

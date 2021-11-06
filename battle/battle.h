@@ -21,7 +21,7 @@ class Battle {
 public:
 	Battle() {}
 	Battle(vector<shared_ptr<Hero>> playerParty, sf::RenderWindow* window, 
-		   shared_ptr<TextureManager> textures, shared_ptr<Initializer> globalData) {
+		   shared_ptr<Initializer> globalData) {
 		this->playerParty = playerParty;
 		this->window = window;
 		this->textures = textures;
@@ -29,6 +29,7 @@ public:
    	 	generateEnemyGroup(globalData);
    	 	setScreenPlacementForCharacters();
    	 	gameSound.loadAndPlayRandomBattleSong();
+   	 	textures = globalData->textures;
 	}
 
     GameSound gameSound;  

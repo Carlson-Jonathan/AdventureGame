@@ -12,7 +12,7 @@ class Hero : public Character {
 public:
 
 	Hero() {}
-	Hero(shared_ptr<TextureManager> textures, string character, shared_ptr<Initializer> globalData) {
+	Hero(string character, shared_ptr<Initializer> globalData) {
 		this->maxHitPoints 		= 100;
 		this->hitPoints 		= 85;
 		this->maxBloodPoints	= 90;
@@ -22,7 +22,7 @@ public:
 		this->speed 			= 80;
 		this->precision 		= 92;
 		auto spriteData = make_shared<SpriteData>(character);
-		this->battleAnimation   = BattleAnimation(spriteData, textures, character, globalData);
+		this->battleAnimation   = BattleAnimation(spriteData, character, globalData);
 	}
 };
 

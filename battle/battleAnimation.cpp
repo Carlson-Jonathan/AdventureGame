@@ -2,7 +2,6 @@
 
 void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow* window) {
 	window->draw(sprite);
-	// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
 
 	if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
 
@@ -15,8 +14,6 @@ void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow* window) {
 		sprite.setTextureRect(rectangle);
 		clock.restart();
 	}
-	// cout << "Sprite rectangle position: " << rectangle.left << endl;
-	// spriteData->display();
 }
 
 void BattleAnimation::drawAndAnimateSprite2(sf::RenderWindow* window) {

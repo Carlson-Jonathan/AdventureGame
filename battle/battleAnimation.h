@@ -13,8 +13,6 @@
 #include "../spriteSchematicXML.h"
 #include "../textureManager.h"
 
-// #include "../tinyxml2.h"
-
 using namespace std;
 
 /***************************************************************************************************
@@ -26,11 +24,11 @@ class BattleAnimation {
 public:
 
 	BattleAnimation() {}
-	BattleAnimation(shared_ptr<SpriteData> spriteData, shared_ptr<TextureManager> textures, 
-		            string character, shared_ptr<Initializer> globalData) {
+	BattleAnimation(shared_ptr<SpriteData> spriteData, string character, 
+		            shared_ptr<Initializer> globalData) {
 
 		this->spriteData = spriteData;
-		this->textures   = textures;
+		this->textures   = globalData->textures;
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
 		rectangle.width  = spriteData->width;

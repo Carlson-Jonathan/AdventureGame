@@ -2,9 +2,7 @@
 #define INITIALIZER_H
 
 #include <iostream>
-#include "tinyxml2.h"
 #include "xmlParser.h"
-#include <memory>
 #include "textureManager.h"
 
 using namespace std;
@@ -12,7 +10,13 @@ using namespace std;
 class Initializer {
 public:
 
-	Initializer() : window(sf::VideoMode(1333, 750), "SFML Examples") {}
+	Initializer() : window(sf::VideoMode(screenWidth, screenHeight), "Jon rules!") {
+		window.setFramerateLimit(frameRate);
+	}
+
+	short screenWidth  = 1333;
+	short screenHeight = 750;
+	short frameRate    = 60;
 
 	sf::RenderWindow window;
 	TextureManager textures;

@@ -22,7 +22,7 @@ void Battle::generateFullBattlescape() {
 
 	// Displays debug data in the console
 	// system("clear");
-    // cout << "Frame count: " << frameNumber++ << "\n\n";
+ //    cout << "Frame count: " << frameNumber++ << "\n\n";
 	// cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
 	//      << setw(14) << "Speed" << setw(14) << "Precision" << endl;
 	// cout << "--------------------------------------------------------------" << endl;

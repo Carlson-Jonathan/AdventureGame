@@ -21,7 +21,7 @@ public:
 		this->essencePoints 	= 46;
 		this->speed 			= 80;
 		this->precision 		= 92;
-		shared_ptr<SpriteData> spriteData(new SpriteData(character));
+		auto spriteData = make_shared<SpriteData>(character);
 		this->battleAnimation   = BattleAnimation(spriteData, textures, character, globalData);
 	}
 };

@@ -29,13 +29,11 @@ public:
    	 	generateEnemyGroup(globalData);
    	 	setScreenPlacementForCharacters();
    	 	gameSound.loadAndPlayRandomBattleSong();
-   	 	// this->globalData = globalData;
 	}
 
     GameSound gameSound;  
 
 	shared_ptr<TextureManager> textures;
-	// shared_ptr<Initializer> globalData;
     sf::Sprite sprite;
 	sf::RenderWindow* window;
 
@@ -50,9 +48,6 @@ public:
 		{sf::Vector2f(900.f, 455.f)}, // middle
 		{sf::Vector2f(1000.f, 600.f)}  // bottom
 	};
-
-
-	// map<string, pair<sf::Vector2f, sf::Vector2f>> opponentScreenPositions;
 
 	vector<shared_ptr<Hero>> playerParty;
   	vector<shared_ptr<Enemy>> enemyGroup;

@@ -9,7 +9,6 @@
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
-// #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "textureManager.h"
@@ -35,7 +34,7 @@ int main() {
 	sf::Clock clock;
 	
 	pWindow->setFramerateLimit(frameRate);
-   shared_ptr<TextureManager> textures(new TextureManager);
+	auto textures = make_shared<TextureManager>();
 
    // Fonts and text
 	if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 
@@ -49,10 +48,6 @@ int main() {
 
    // Create your objects
    vector<shared_ptr<Hero>> playerParty;
-   // for(short i = 0; i < partySize; i++) {
-   // 	party.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
-   // 	party[i]->name = "Member " + to_string(i + 1);
-   // }
 
    playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "heroine", globalData)));
    playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "dragon", globalData)));

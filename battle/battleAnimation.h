@@ -37,24 +37,7 @@ public:
 		rectangle.height = spriteData->height;
 		sprite.setTextureRect(rectangle);
 		sprite.setTexture(textures->textures[spriteData->character]);
-		// spriteSchematic = make_shared<SpriteSchematic>(character);
 		spriteSchematicXML = make_shared<SpriteSchematicXML>(character, globalData);
-
-		// XMLElement* node;
-
-		// if(character == "heroine") {
-		// 	node = globalData->xmlParser->getHero(character);
-		// 	cout << "Creating animation for hero line." << endl;
-		// }
-		// else {
-		// 	cout << "Creating animation for hero line." << endl;
-		// 	node = globalData->xmlParser->getMonster(character);
-		// }
-		// cout << " - SUCCESS!" << endl;
-
-		// cout << "Attempting to get node data for " << character << endl;
-		// cout << "Data: " << node->FirstChildElement("name")->GetText(); 
-		// cout << " - SUCCESS!" << endl;
 	}
 
 	shared_ptr<TextureManager> textures;
@@ -64,7 +47,6 @@ public:
 	sf::Vector2f screenPositionX;
 	sf::Vector2f screenPositionY;
 	shared_ptr<SpriteData> spriteData;
-	// shared_ptr<SpriteSchematic> spriteSchematic;
 	shared_ptr<SpriteSchematicXML> spriteSchematicXML;
 
 	void drawAndAnimateSprite(sf::RenderWindow* window);

@@ -43,9 +43,9 @@ public:
 
     void setCharacterNode() {
 		if(character == "heroine") 
-			characterNode = globalData->xmlParser->getHero(character);
+			characterNode = globalData->xmlParser.getHero(character);
 		else 
-			characterNode = globalData->xmlParser->getMonster(character);
+			characterNode = globalData->xmlParser.getMonster(character);
     }
 
 	void populateEntireSchematic() {

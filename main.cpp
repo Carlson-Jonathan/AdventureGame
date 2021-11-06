@@ -25,15 +25,13 @@ int main() {
 		   frameRate    = 60,
 		   textSize     = 32;
 
-   sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Examples");
-	sf::RenderWindow* pWindow = &window;
+	sf::RenderWindow* pWindow = &globalData->window;
    sf::Music music;
 	sf::Text text;
 	sf::Font font; 
 	sf::Clock clock;
 	
 	pWindow->setFramerateLimit(frameRate);
-	// auto textures = make_shared<TextureManager>();
 
    // Fonts and text
 	if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 

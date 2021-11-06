@@ -12,14 +12,11 @@ using namespace std;
 class Initializer {
 public:
 
-	Initializer() {
-		xmlParser = make_shared<XMLParser>();
-		textures  = make_shared<TextureManager>();
-	}
+	Initializer() : window(sf::VideoMode(1333, 750), "SFML Examples") {}
 
-
-	shared_ptr<XMLParser> xmlParser;
-	shared_ptr<TextureManager> textures;
+	sf::RenderWindow window;
+	TextureManager textures;
+	XMLParser xmlParser;
 
 };
 

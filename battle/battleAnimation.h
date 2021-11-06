@@ -28,7 +28,7 @@ public:
 		            shared_ptr<Initializer> globalData) {
 
 		this->spriteData = spriteData;
-		this->textures   = globalData->textures;
+		this->textures   = &globalData->textures;
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
 		rectangle.width  = spriteData->width;
@@ -38,7 +38,7 @@ public:
 		spriteSchematicXML = make_shared<SpriteSchematicXML>(character, globalData);
 	}
 
-	shared_ptr<TextureManager> textures;
+	TextureManager* textures;
 	sf::IntRect rectangle;
 	sf::Sprite sprite;
 	sf::Clock clock;

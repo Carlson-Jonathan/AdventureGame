@@ -29,12 +29,12 @@ public:
    	 	generateEnemyGroup(globalData);
    	 	setScreenPlacementForCharacters();
    	 	gameSound.loadAndPlayRandomBattleSong();
-   	 	textures = globalData->textures;
+   	 	this->textures = &globalData->textures;
 	}
 
     GameSound gameSound;  
 
-	shared_ptr<TextureManager> textures;
+	TextureManager* textures;
     sf::Sprite sprite;
 	sf::RenderWindow* window;
 

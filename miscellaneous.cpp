@@ -8,10 +8,14 @@ vector<string> Miscellaneous::filterByFileType(vector<string> files, const strin
     return files;
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 unsigned short Miscellaneous::generateRandomNumber(const short unsigned max) {
     srand (time(NULL));
     return rand() % max + 1;
 }
+
+/*------------------------------------------------------------------------------------------------*/
 
 vector<string> Miscellaneous::getAllFileNamesFromDirectory(const char *path) {
     struct dirent *entry;
@@ -29,21 +33,28 @@ vector<string> Miscellaneous::getAllFileNamesFromDirectory(const char *path) {
     return files;
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 vector<string> Miscellaneous::getFileTypesFromDirectory(const char *path, const string fileType) {
     vector<string> files = getAllFileNamesFromDirectory(path);
     return filterByFileType(files, fileType);
 }
 
+/*------------------------------------------------------------------------------------------------*/
 
 bool Miscellaneous::isFileType(const string fileName, const string fileType) {
     std::size_t found = fileName.find(fileType);
     return found!=std::string::npos;
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 float Miscellaneous::convertStringToFloat(string number) {
     std::string::size_type sz;
     return std::stof(number, &sz);
 }   
+
+/*------------------------------------------------------------------------------------------------*/
 
 string Miscellaneous::shrinkWhiteSpacing(string str) {
     size_t found = str.find("  ");
@@ -53,6 +64,8 @@ string Miscellaneous::shrinkWhiteSpacing(string str) {
     }
     return str;
 }
+
+/*------------------------------------------------------------------------------------------------*/
 
 vector<string> Miscellaneous::parseString(string str) {
     vector<string> words;

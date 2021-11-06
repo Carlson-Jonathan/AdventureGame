@@ -23,7 +23,6 @@ public:
 	sf::RenderWindow window;
 	TextureManager   textures;
 	XMLParser        xmlParser;
-
 };
 
 #endif // INITIALIZER_H

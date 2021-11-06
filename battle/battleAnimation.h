@@ -16,11 +16,6 @@
 
 using namespace std;
 
-/***************************************************************************************************
- * The purpose of this class is to accept a 'spriteData' object and use the information in that
- * object to construct, place, and animate the sprite. Any spriteData object should be able to be
- * used and this class should be able to decipher what to do with it from the object's data.
- * ************************************************************************************************/
 class BattleAnimation {
 public:
 
@@ -29,21 +24,25 @@ public:
 
 		this->spriteData = spriteData;
 		this->textures   = &globalData.textures;
+
 		rectangle.left   = spriteData->upperLeftX;
 		rectangle.top    = spriteData->upperLeftY;
 		rectangle.width  = spriteData->width;
 		rectangle.height = spriteData->height;
+
 		sprite.setTextureRect(rectangle);
 		sprite.setTexture(textures->textures[spriteData->character]);
 		spriteSchematicXML = make_shared<SpriteSchematicXML>(character, globalData);
 	}
 
 	TextureManager* textures;
+
 	sf::IntRect rectangle;
 	sf::Sprite sprite;
 	sf::Clock clock;
 	sf::Vector2f screenPositionX;
 	sf::Vector2f screenPositionY;
+
 	shared_ptr<SpriteData> spriteData;
 	shared_ptr<SpriteSchematicXML> spriteSchematicXML;
 

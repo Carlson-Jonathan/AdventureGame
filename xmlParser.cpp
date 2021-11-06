@@ -46,7 +46,7 @@ void XMLParser::insertCharacterNode(map<string, XMLElement*> & map, XMLElement* 
 
 
 
-/**************************************************************************************************/
+/*################################################################################################*/
 
 void XMLParser::printNodeData(XMLElement* node) {
 	cout << "Printing..." << endl;	

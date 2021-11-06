@@ -14,6 +14,7 @@ using namespace tinyxml2;
 
 class XMLParser {
 public:
+	
 	XMLParser() {
 		getAndVerifySpriteDataFromXMLFile("spriteSchematics.xml");
 		populateAndVerifyCharactersNode();

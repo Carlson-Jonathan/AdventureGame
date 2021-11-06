@@ -43,8 +43,6 @@ public:
 		{"heroine",  {{{0, 0  ,  54,    72,    5     }, 0.10f}, "../Images/heroine.png"}}
 	};
 
-	// vector<map<string, short>> 
-
 	void display() {
 		cout << "Image File   = " << imageFile << "\n"
 			 << "Upper Left X = " << upperLeftX << "\n" 

@@ -16,6 +16,8 @@ void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow & window) {
 	}
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 void BattleAnimation::drawAndAnimateSprite2(sf::RenderWindow & window) {
 	window.draw(sprite);
 	// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;

@@ -50,17 +50,17 @@ private:
 	vector<sf::Vector2f> enemyScreenPositions = {
 		{sf::Vector2f(800.f, 250.f)}, // top
 		{sf::Vector2f(900.f, 455.f)}, // middle
-		{sf::Vector2f(1000.f, 600.f)}  // bottom
+		{sf::Vector2f(1000.f, 600.f)} // bottom
 	};
 
 	vector<shared_ptr<Hero>> playerParty;
   	vector<shared_ptr<Enemy>> enemyGroup;
 
-	short frameNumber = 0;
+	short frameNumber    = 0;
 	short enemyGroupSize = 3;
 
 	string background = "forrestBackground";
-	string musicFile = "Sounds/Music/battle1.ogg";
+	string musicFile  = "Sounds/Music/battle1.ogg";
 
 	void generateEnemyGroup(Initializer & globalData);
 	void drawBackground();

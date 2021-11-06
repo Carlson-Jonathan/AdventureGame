@@ -16,27 +16,22 @@ class XMLParser {
 public:
 	XMLParser() {
 		getAndVerifySpriteDataFromXMLFile("spriteSchematics.xml");
-		initializeAllNodes();
-		populateAllMaps();
+		populateAndVerifyCharactersNode();
+		populateCharacterGetterMap();
 	}
 
-	XMLElement* getMonster(string monster);
-	XMLElement* getHero(string hero);
+	XMLElement* getCharacter(string character) {return characterGetterMap[character];}
 
 private:
 
 	XMLDocument xmlDocument;
 	XMLElement* charactersNode;
-	XMLElement* monstersNode;
-	XMLElement* heroesNode;
-	map<string, XMLElement*> monsters;
-	map<string, XMLElement*> heroes;
+	map<string, XMLElement*> characterGetterMap;
 
 	void getAndVerifySpriteDataFromXMLFile(const char* file);
-	XMLElement* initializeAndVerifyXMLNode(char* element, XMLElement* child, XMLElement* parent);
-	void initializeAllNodes();
-	void populateNodeMap(map<string, XMLElement*> & map, XMLElement* node);
-	void populateAllMaps();
+	void populateAndVerifyCharactersNode();
+	void populateCharacterGetterMap();
+	void insertCharacterNode(map<string, XMLElement*> & map, XMLElement* node);
 	void printNodeData(XMLElement* node);
 	void printMapData(map<string, XMLElement*> map);
 };

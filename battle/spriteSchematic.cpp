@@ -9,6 +9,8 @@ bool SpriteSchematic::detectKeyword(string line, string keyword) {
     return false;
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 void SpriteSchematic::getDataFromLibraryAndSetRawData(string keyword) {
 
     string line;
@@ -34,6 +36,8 @@ void SpriteSchematic::getDataFromLibraryAndSetRawData(string keyword) {
     spriteSchematics.close();
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 void SpriteSchematic::setNameImageWidthHeightFromRawData() {
 	try {
 		tryToSetNameImageWidthHeightFromRawData();
@@ -46,6 +50,8 @@ void SpriteSchematic::setNameImageWidthHeightFromRawData() {
 	}
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 void SpriteSchematic::tryToSetNameImageWidthHeightFromRawData() {
     stringstream word(rawData[0]);
     string width, height;
@@ -53,6 +59,8 @@ void SpriteSchematic::tryToSetNameImageWidthHeightFromRawData() {
     this->width = stoi(width);
     this->height = stoi(height);
 }
+
+/*------------------------------------------------------------------------------------------------*/
 
 void SpriteSchematic::setSpeedFromRawData() {
 	for(int i = 1; i < rawData.size(); i++) {
@@ -64,6 +72,8 @@ void SpriteSchematic::setSpeedFromRawData() {
 	}
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
 void SpriteSchematic::formatRawData() {
     for(int i = 1; i < rawData.size(); i++) {
         string line = Miscellaneous::shrinkWhiteSpacing(rawData[i]);
@@ -71,6 +81,8 @@ void SpriteSchematic::formatRawData() {
         formattedData.push_back(words);
     }
 }    
+
+/*------------------------------------------------------------------------------------------------*/
 
 vector<pair<short, short>> SpriteSchematic::setSpritePointsInActionArrays(vector<string> words) {
     vector<pair<short, short>> spritePoints;
@@ -82,6 +94,8 @@ vector<pair<short, short>> SpriteSchematic::setSpritePointsInActionArrays(vector
     return spritePoints;
 }	
 
+/*------------------------------------------------------------------------------------------------*/
+
 void SpriteSchematic::populateEntireSpriteSchematic() {
     idle       = setSpritePointsInActionArrays(formattedData[0]);
     attack     = setSpritePointsInActionArrays(formattedData[1]);
@@ -90,12 +104,18 @@ void SpriteSchematic::populateEntireSpriteSchematic() {
     death      = setSpritePointsInActionArrays(formattedData[4]);        
 }
 
+
+
+/*################################################################################################*/
+
 void SpriteSchematic::displayRawCharacterData() {
     cout << "RawData.size() = " << rawData.size() << endl;
     for(string i : rawData) {
         cout << i << endl;
     }
 }
+
+/*------------------------------------------------------------------------------------------------*/
 
 void SpriteSchematic::displaySchematicData() {
 	cout << "################### Sprite Schematic Data: ###################\n";

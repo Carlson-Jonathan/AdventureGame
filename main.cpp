@@ -5,92 +5,61 @@
 
 #include "battle/battle.h"
 #include "battle/character.h"
+#include "initializer.h"
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
-// #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-#include "textureManager.h"
 #include <vector>
 
 using namespace std;
 
 int main() {
 
-	short screenWidth  = 1333,
-		   screenHeight = 750,
-		   frameRate    = 60,
-		   textSize     = 32,
-		   partySize    = 1;
-
-   sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "SFML Examples");
-	sf::RenderWindow* pWindow = &window;
-   sf::Music music;
-	sf::Text text;
-	sf::Font font; 
-	sf::Clock clock;
+	Initializer globalData;
 	
-	pWindow->setFramerateLimit(frameRate);
-   shared_ptr<TextureManager> textures(new TextureManager);
-
-   // Fonts and text
-	if (!font.loadFromFile("Fonts/Sweet Maple.otf")) cout << "Font not found" <<	endl; 
-	text.setFont(font); 
-	text.setCharacterSize(textSize); 
-
-	// Music
-	// if (!music.openFromFile("song.ogg"))
-   //   	return -1; // error
-	// music.play();
-
-   // Create your objects
+   // Create Player Party
    vector<shared_ptr<Hero>> playerParty;
-   // for(short i = 0; i < partySize; i++) {
-   // 	party.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
-   // 	party[i]->name = "Member " + to_string(i + 1);
-   // }
+   playerParty.push_back(shared_ptr<Hero>(new Hero("heroine",  globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("dragon",   globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("cactopus", globalData)));
 
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "heroine")));
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "dragon")));
-   playerParty.push_back(shared_ptr<Hero>(new Hero(textures, "cactopus")));
-
-   Battle battle(playerParty, pWindow, textures);
+   Battle battle(playerParty, globalData);
 
    // Master window loop. 
-   while (pWindow->isOpen()) {
+   while(globalData.window.isOpen()) {
 
    	// Event Handler (button detectors)
 	   sf::Event event;
-      while (pWindow->pollEvent(event)) {
+      while (globalData.window.pollEvent(event)) {
 
       	// Close the window by clicking the "X".
    	   if (event.type == sf::Event::Closed)
-            pWindow->close();
+            globalData.window.close();
 
       	// Catches window resize events. Adjusts resolution to match window resize.
          if (event.type == sf::Event::Resized) {
-          	screenWidth  = event.size.width;
-          	screenHeight = event.size.height;
-           	sf::FloatRect visibleArea(0, 0, screenWidth, screenHeight);
-           	pWindow->setView(sf::View(visibleArea));
+          	globalData.screenWidth  = event.size.width;
+          	globalData.screenHeight = event.size.height;
+           	sf::FloatRect visibleArea(0, 0, globalData.screenWidth, globalData.screenHeight);
+           	globalData.window.setView(sf::View(visibleArea));
          }
       }
 
       // Erase previous screen drawings (eliminates ghosting).
-      pWindow->clear(sf::Color(102, 255, 255));
+      globalData.window.clear(sf::Color(102, 255, 255));
 
       /********************************************************************************************
-      * All stuff between these lines gets drawn to the screen.
+      * All stuff between these lines gets drawn to the screen. ***********************************
       *********************************************************************************************/      
 
-      // window.draw(sprite);
       battle.generateFullBattlescape();
 
       /********************************************************************************************
-      * End of Drawing loop.
+      * End of Drawing loop. **********************************************************************
       *********************************************************************************************/
-      pWindow->display();
+      globalData.window.display();
    }
 
     return 0;

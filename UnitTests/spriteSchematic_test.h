@@ -127,10 +127,7 @@ bool SpriteSchematic_Test::setNameImageWidthHeightFromRawData_test() {
     rawData.push_back("X Y 2147483648 -2147483648");
 
     try {
-        // streambuf* orig_buf = cout.rdbuf();
-        // cout.rdbuf(NULL);
         setNameImageWidthHeightFromRawData();
-        // cout.rdbuf(orig_buf);
     } catch(int exception) {
         width = 3712;
         height = 3911;

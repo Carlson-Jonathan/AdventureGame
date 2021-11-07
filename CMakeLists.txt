@@ -10,14 +10,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /media/jonathan/2TB\ Storage\ and\ Game\ Driv
 
 #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_executable(Main.out 
-	main.cpp 
+add_executable(
+	Main.out 
 	battle/battle.cpp 
 	battle/battleAnimation.cpp
-	miscellaneous.cpp
 	battle/spriteSchematic.cpp
+	main.cpp 
+	miscellaneous.cpp
+	spriteSchematicXML.cpp
+	tinyxml2.cpp
 	xmlParser.cpp
-	tinyxml2.cpp)
+	)
 
 target_link_libraries(Main.out sfml-graphics sfml-audio)
 

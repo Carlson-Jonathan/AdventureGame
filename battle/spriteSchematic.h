@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef SPRITESCHEMATIC_H
 #define SPRITESCHEMATIC_H
 
@@ -6,6 +8,11 @@
 #include <vector>
 #include "../miscellaneous.h"
 using namespace std;
+
+/*
+	I am keeping this class around as a potential backup incase tinyxml.h fails miserably. Everything
+	works sofar, but I want something to fall back on just in case.
+*/
 
 class SpriteSchematic {
 public:
@@ -18,7 +25,7 @@ public:
 		setSpeedFromRawData();
 		formatRawData();
 		populateEntireSpriteSchematic();
-		displaySchematicData();
+		// displaySchematicData();
 	}
 
     vector<string> rawData;
@@ -28,7 +35,7 @@ public:
     string name;
     string fileName;
           
-    int width;            // What are the chances we ever get 64k monitors?
+    int width;            
     int height;
     vector<float> speed;
 

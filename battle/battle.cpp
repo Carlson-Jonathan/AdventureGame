@@ -1,11 +1,12 @@
 #include "battle.h"
 
 void Battle::drawBackground() {
-	sprite.setTexture(textures->textures[background]);  
+	sprite.setTexture(globalData->textures.textures[background]);  
 	sprite.setOrigin(0, 0);		
-	window->draw(sprite);
+	globalData->window.draw(sprite);
 }
 
+/*------------------------------------------------------------------------------------------------*/
 
 void Battle::setScreenPlacementForCharacters() {
 
@@ -17,32 +18,39 @@ void Battle::setScreenPlacementForCharacters() {
 	}
 }
 
+/*------------------------------------------------------------------------------------------------*/
 
 void Battle::generateFullBattlescape() {
 
-	// Displays debug data in the console
-	// system("clear");
-    // cout << "Frame count: " << frameNumber++ << "\n\n";
-	// cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
-	//      << setw(14) << "Speed" << setw(14) << "Precision" << endl;
-	// cout << "--------------------------------------------------------------" << endl;
-	
 	drawBackground();
 	for(shared_ptr<Hero> i : playerParty) {
-		// i->display();
-		i->battleAnimation.drawAndAnimateSprite(window);
+		// i->displayCharacterData();
+		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 		// i->spriteSchematic->displayRawCharacterData();
 	}
 
 	for(shared_ptr<Enemy> i : enemyGroup) {
-		// i->display();
-		i->battleAnimation.drawAndAnimateSprite(window);
+		// i->displayCharacterData();
+		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 	}
 }
 
+/*------------------------------------------------------------------------------------------------*/
 
-void Battle::generateEnemyGroup() {
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "dragon")));
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "cactopus")));
-	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy(textures, "heroine")));
+void Battle::generateEnemyGroup(Initializer & globalData) {
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("dragon",   globalData)));
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("cactopus", globalData)));
+	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("heroine",  globalData)));
+}
+
+/*################################################################################################*/
+
+
+
+void Battle::displayCharacterDataHeading() {
+	system("clear");
+    cout << "Frame count: " << frameNumber++ << "\n\n";
+	cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
+	     << setw(14) << "Speed" << setw(14) << "Precision" << endl;
+	cout << "--------------------------------------------------------------" << endl;
 }

@@ -1,39 +1,31 @@
 #include "battle.h"
 
-void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow* window) {
-	window->draw(sprite);
-	// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
+void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow & window) {
 
-	if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
+	window.draw(sprite);
 
-		rectangle.left += spriteData->width;
-
-		if(rectangle.left >= (spriteData->width * spriteData->numberOfImages)) {
-			rectangle.left = 0;
-		}
-
-		sprite.setTextureRect(rectangle);
+	if(clock.getElapsedTime().asSeconds() > spriteSchematicXML.animationSpeeds[0]) {
+		setNewRectanglePosition(spriteSchematicXML.idle[currentImageNumber - 1]);
+		currentImageNumber++;
 		clock.restart();
 	}
-	// cout << "Sprite rectangle position: " << rectangle.left << endl;
-	// spriteData->display();
+
+	if(currentImageNumber >= numberOfImages - 1)
+		currentImageNumber = 0;
 }
 
-void BattleAnimation::drawAndAnimateSprite2(sf::RenderWindow* window) {
-	window->draw(sprite);
-	// cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;
+/*------------------------------------------------------------------------------------------------*/
 
-	if(clock.getElapsedTime().asSeconds() > spriteData->animationSpeed) {
+void BattleAnimation::setNewRectanglePosition(pair<short, short> point) {
+	rectangle.left = spriteSchematicXML.idle[currentImageNumber].first;
+	rectangle.top  = spriteSchematicXML.idle[currentImageNumber].second;
+	sprite.setTextureRect(rectangle);
+}
 
-		rectangle.left += spriteData->width;
 
-		if(rectangle.left >= (spriteData->width * spriteData->numberOfImages)) {
-			rectangle.left = 0;
-		}
 
-		sprite.setTextureRect(rectangle);
-		clock.restart();
-	}
-	// cout << "Sprite rectangle position: " << rectangle.left << endl;
-	// spriteData->display();
+/*################################################################################################*/
+
+void BattleAnimation::displayAnimationClock() {
+	cout << "Animation clock: " << clock.getElapsedTime().asSeconds() << endl;	
 }

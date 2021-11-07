@@ -7,7 +7,6 @@
 #include <iostream>
 #include <iomanip>
 #include <memory>
-#include "spriteData.h"
 #include "../textureManager.h"
 
 using namespace std;

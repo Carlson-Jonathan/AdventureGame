@@ -9,6 +9,11 @@
 #include "../miscellaneous.h"
 using namespace std;
 
+/*
+	I am keeping this class around as a potential backup incase tinyxml.h fails miserably. Everything
+	works sofar, but I want something to fall back on just in case.
+*/
+
 class SpriteSchematic {
 public:
 

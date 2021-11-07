@@ -22,22 +22,15 @@ void Battle::setScreenPlacementForCharacters() {
 
 void Battle::generateFullBattlescape() {
 
-	// Displays debug data in the console
-	// system("clear");
- //    cout << "Frame count: " << frameNumber++ << "\n\n";
-	// cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
-	//      << setw(14) << "Speed" << setw(14) << "Precision" << endl;
-	// cout << "--------------------------------------------------------------" << endl;
-	
 	drawBackground();
 	for(shared_ptr<Hero> i : playerParty) {
-		// i->display();
+		// i->displayCharacterData();
 		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 		// i->spriteSchematic->displayRawCharacterData();
 	}
 
 	for(shared_ptr<Enemy> i : enemyGroup) {
-		// i->display();
+		// i->displayCharacterData();
 		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 	}
 }
@@ -51,3 +44,13 @@ void Battle::generateEnemyGroup(Initializer & globalData) {
 }
 
 /*################################################################################################*/
+
+
+
+void Battle::displayCharacterDataHeading() {
+	system("clear");
+    cout << "Frame count: " << frameNumber++ << "\n\n";
+	cout << "Name" << setw(10) << "HP" << setw(10) << "BP" << setw(10) << "EP"
+	     << setw(14) << "Speed" << setw(14) << "Precision" << endl;
+	cout << "--------------------------------------------------------------" << endl;
+}

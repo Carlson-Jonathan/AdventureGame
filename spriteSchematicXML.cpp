@@ -65,7 +65,7 @@ void SpriteSchematicXML::populateActionSpeeds(char* actionName) {
 
 	string sActionSpeed = actionSpeed;					  
 
-	actionSpeeds.push_back(Miscellaneous::convertStringToFloat(actionSpeed));
+	animationSpeeds.push_back(Miscellaneous::convertStringToFloat(actionSpeed));
 }
 
 
@@ -85,23 +85,23 @@ void SpriteSchematicXML::printSchematicData() {
 	cout << "Width = " << width << endl;
 	cout << "Height = " << height << endl;
 
-	cout << "idle speed: " << actionSpeeds[0] << endl;
+	cout << "idle speed: " << animationSpeeds[0] << endl;
 	cout << "idle points: ";
 	printActionPoints(idle);
 
-	cout << "idle speed: " << actionSpeeds[1] << endl;
+	cout << "idle speed: " << animationSpeeds[1] << endl;
 	cout << "\nattack points: ";
 	printActionPoints(attack);
 
-	cout << "idle speed: " << actionSpeeds[2] << endl;
+	cout << "idle speed: " << animationSpeeds[2] << endl;
 	cout << "\ndefend points: ";
 	printActionPoints(defend);
 
-	cout << "idle speed: " << actionSpeeds[3] << endl;
+	cout << "idle speed: " << animationSpeeds[3] << endl;
 	cout << "\ntakeDamage points: ";
 	printActionPoints(takeDamage);
 
-	cout << "idle speed: " << actionSpeeds[4] << endl;
+	cout << "idle speed: " << animationSpeeds[4] << endl;
 	cout << "\ndeath points: ";
 	printActionPoints(death);
 	cout << endl;

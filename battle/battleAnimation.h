@@ -9,7 +9,6 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "spriteData.h"
 #include "spriteSchematic.h"
 #include "../spriteSchematicXML.h"
 #include "../textureManager.h"
@@ -20,19 +19,16 @@ class BattleAnimation {
 public:
 
 	BattleAnimation() {}
-	BattleAnimation(shared_ptr<SpriteData> spriteData, string character, Initializer & globalData) :
+	BattleAnimation(string character, Initializer & globalData) :
 	spriteSchematicXML(character, globalData) {
 
-		this->spriteData = spriteData;
-
-		rectangle.left   = spriteData->upperLeftX;
-		rectangle.top    = spriteData->upperLeftY;
-		rectangle.width  = spriteData->width;
-		rectangle.height = spriteData->height;
+		rectangle.left   = spriteSchematicXML.idle[0].first;
+		rectangle.top    = spriteSchematicXML.idle[0].second;
+		rectangle.width  = spriteSchematicXML.width;
+		rectangle.height = spriteSchematicXML.height;
 
 		sprite.setTextureRect(rectangle);
 		sprite.setTexture(globalData.textures.textures[character]);
-		testingXML();
 	}
 
 	SpriteSchematicXML spriteSchematicXML;
@@ -43,15 +39,12 @@ public:
 	sf::Vector2f screenPositionX;
 	sf::Vector2f screenPositionY;
 
-	shared_ptr<SpriteData> spriteData;
-	// shared_ptr<SpriteSchematicXML> spriteSchematicXML;
+	short numberOfImages = spriteSchematicXML.idle.size();
+	short currentImageNumber = 1;
 
 	void drawAndAnimateSprite(sf::RenderWindow & window);
-	void createSpriteFromSchematic();
-	void drawAndAnimateSprite2(sf::RenderWindow & window);
-
-	void testingXML();
-
+	void setNewRectanglePosition(pair<short, short> point);
+	void displayAnimationClock();
 };
 
 #endif // BATTLEANIMATION_H

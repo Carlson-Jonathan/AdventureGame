@@ -65,7 +65,7 @@ private:
 	void generateEnemyGroup(Initializer & globalData);
 	void drawBackground();
 	void setScreenPlacementForCharacters();
-
+	void displayCharacterDataHeading();
 };
 
 #endif // BATTLE_H

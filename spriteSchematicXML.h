@@ -21,7 +21,7 @@ public:
 		this->globalData = &globalData;
 		setCharacterNode();
 		populateEntireSchematic();
-		printSchematicData();
+		// printSchematicData();
 	}
 
     string character;
@@ -29,7 +29,7 @@ public:
     string fileName;
     int width;           
     int height;
-    vector<float> actionSpeeds;
+    vector<float> animationSpeeds;
 
     // Arrays of points
     vector<pair<short, short>> idle;

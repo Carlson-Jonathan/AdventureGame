@@ -9,8 +9,8 @@
 #include "hero.h"
 #include "../initializer.h"
 #include <iostream>
-// #include <map>
 #include <memory>
+#include "../miscellaneous.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "../textureManager.h"
@@ -28,6 +28,7 @@ public:
    	 	generateEnemyGroup(globalData);
    	 	setScreenPlacementForCharacters();
    	 	gameSound.loadAndPlayRandomBattleSong();
+		background = selectRandomBackground();
 	}
 
 	void generateFullBattlescape();
@@ -59,9 +60,10 @@ private:
 	short frameNumber    = 0;
 	short enemyGroupSize = 3;
 
-	string background = "forrestBackground";
+	string background;
 	string musicFile  = "Sounds/Music/battle1.ogg";
 
+	string selectRandomBackground();
 	void generateEnemyGroup(Initializer & globalData);
 	void drawBackground();
 	void setScreenPlacementForCharacters();

@@ -26,7 +26,9 @@ private:
 		{"dragon",				"Images/dragon.png"},
 		{"cactopus", 			"Images/cactopus.png"},
 		{"heroine",             "Images/heroine.png"},
-		{"forrestBackground", 	"Images/forrestBackground.png"}
+		{"forrestBackground", 	"Images/BattleBackgrounds/forrestBackground.png"},
+		{"meadowBackground", 	"Images/BattleBackgrounds/meadowBackground.png"},
+		{"desertBackground", 	"Images/BattleBackgrounds/desertBackground.png"}
 	};
 
 	void populateTextures() {

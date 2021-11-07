@@ -1,13 +1,5 @@
 #include "battle.h"
 
-void Battle::drawBackground() {
-	sprite.setTexture(globalData->textures.textures[background]);  
-	sprite.setOrigin(0, 0);		
-	globalData->window.draw(sprite);
-}
-
-/*------------------------------------------------------------------------------------------------*/
-
 void Battle::setScreenPlacementForCharacters() {
 
 	for(short i = 0; i < playerParty.size(); i++) {
@@ -43,9 +35,33 @@ void Battle::generateEnemyGroup(Initializer & globalData) {
 	enemyGroup.push_back(shared_ptr<Enemy>(new Enemy("heroine",  globalData)));
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
+string Battle::selectRandomBackground() {
+	
+	short randNum = Miscellaneous::generateRandomNumber(3);	
+
+	string backgrounds[] = {
+		"forrestBackground",
+		"meadowBackground",
+		"desertBackground"
+	};
+
+	return backgrounds[randNum - 1];
+}
+
+/*------------------------------------------------------------------------------------------------*/
+
+void Battle::drawBackground() {
+	sprite.setTexture(globalData->textures.textures[background]);  
+	sprite.setOrigin(0, 0);		
+	globalData->window.draw(sprite);
+}
+
+
+
+
 /*################################################################################################*/
-
-
 
 void Battle::displayCharacterDataHeading() {
 	system("clear");

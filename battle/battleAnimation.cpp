@@ -10,7 +10,7 @@ void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow & window) {
 		clock.restart();
 	}
 
-	if(currentImageNumber >= numberOfImages - 1)
+	if(currentImageNumber >= numberOfImages)
 		currentImageNumber = 0;
 }
 

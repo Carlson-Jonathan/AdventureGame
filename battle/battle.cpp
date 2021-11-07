@@ -39,12 +39,22 @@ void Battle::generateEnemyGroup(Initializer & globalData) {
 
 string Battle::selectRandomBackground() {
 	
-	short randNum = Miscellaneous::generateRandomNumber(3);	
+	short randNum = Miscellaneous::generateRandomNumber(13);	
 
 	string backgrounds[] = {
 		"forrestBackground",
 		"meadowBackground",
-		"desertBackground"
+		"desertBackground",
+		"battleback1",
+		"battleback2",
+		"battleback3",
+		"battleback4",
+		"battleback5",
+		"battleback6",
+		"battleback7",
+		"battleback8",
+		"battleback9",
+		"battleback10"
 	};
 
 	return backgrounds[randNum - 1];

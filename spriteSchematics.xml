@@ -220,7 +220,7 @@
 		<imgWidth>59</imgWidth>
 		<imgHeight>68</imgHeight>
 		<idle>
-			<animationSpeed>0.4f</animationSpeed>
+			<animationSpeed>0.13f</animationSpeed>
 			<X_axes>
 				<X1>0</X1>
 				<X2>0</X2>
@@ -248,12 +248,12 @@
 				<X24>59</X24>
 				<X25>118</X25>
 				<X26>177</X26>
-				<X27>118</X27>
-				<X28>177</X28>
-				<X29>236</X29>
-				<X30>236</X30>
-				<X31>236</X31>
-				<X32>236</X32>
+				<X27>236</X27>
+				<X28>236</X28>
+				<X29>999</X29>
+				<X30>999</X30>				
+				<X31>999</X31>
+				<X32>999</X32>					
 			</X_axes>
 			<Y_axes>
 				<Y1>0</Y1>
@@ -282,16 +282,16 @@
 				<Y24>136</Y24>
 				<Y25>136</Y25>
 				<Y26>136</Y26>
-				<Y27>136</Y27>
-				<Y28>136</Y28>
-				<Y29>0</Y29>
-				<Y30>68</Y30>
-				<Y31>0</Y31>
-				<Y32>68</Y32>
+				<Y27>0</Y27>
+				<Y28>68</Y28>
+				<Y29>999</Y29>
+				<Y30>999</Y30>	
+				<Y31>999</Y31>
+				<Y32>999</Y32>								
 			</Y_axes>
 		</idle>
 		<attack>
-			<animationSpeed/>
+			<animationSpeed>0.4f</animationSpeed>
 			<X_axes>
 				<X1>0</X1>
 				<X2>0</X2>
@@ -318,7 +318,7 @@
 			</Y_axes>
 		</attack>
 		<defend>
-			<animationSpeed/>
+			<animationSpeed>0.4f</animationSpeed>
 			<X_axes>
 				<X1>0</X1>
 				<X2>0</X2>
@@ -345,7 +345,7 @@
 			</Y_axes>
 		</defend>
 		<damage>
-			<animationSpeed/>
+			<animationSpeed>0.4f</animationSpeed>
 			<X_axes>
 				<X1>0</X1>
 				<X2>0</X2>
@@ -372,7 +372,7 @@
 			</Y_axes>
 		</damage>
 		<death>
-			<animationSpeed/>
+			<animationSpeed>0.4f</animationSpeed>
 			<X_axes>
 				<X1>0</X1>
 				<X2>0</X2>

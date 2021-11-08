@@ -59,8 +59,9 @@ void SpriteSchematicXML::populateActionSpeeds(char* actionName) {
 					  FirstChildElement("animationSpeed")->GetText();
 
 	if(!actionSpeed) {
-		cout << "Error retrieving action speed for " << character << ":" << actionName << endl;
-		throw perror;
+		cout << "Error retrieving XML <animationSpeed> for <" << character << "><" << actionName 
+		<< ">" << endl;
+		exit(3);
 	}
 
 	string sActionSpeed = actionSpeed;					  

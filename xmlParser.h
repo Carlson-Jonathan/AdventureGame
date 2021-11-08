@@ -17,8 +17,9 @@ public:
 	
 	XMLParser() {
 		getAndVerifySpriteDataFromXMLFile("spriteSchematics.xml");
-		populateAndVerifyCharactersNode();
+		populateAndVerifyRootNode();
 		populateCharacterGetterMap();
+		verifyAllCharacterNodes();
 	}
 
 	XMLElement* getCharacter(string character) {return characterGetterMap[character];}
@@ -26,13 +27,20 @@ public:
 private:
 
 	XMLDocument xmlDocument;
-	XMLElement* charactersNode;
+	XMLElement* rootNode;
 	map<string, XMLElement*> characterGetterMap;
 
 	void getAndVerifySpriteDataFromXMLFile(const char* file);
-	void populateAndVerifyCharactersNode();
+	void populateAndVerifyRootNode();
 	void populateCharacterGetterMap();
-	void insertCharacterNode(map<string, XMLElement*> & map, XMLElement* node);
+	void insertCharacterNodeIntoMap(map<string, XMLElement*> & map, XMLElement* node);
+
+	void verifyAllCharacterNodes();
+	void verifyXMLNode(XMLElement* node, string childName, bool holdsText);
+	void verifyActionPoints(XMLElement* actionNode);
+	void verifyCharacterActions(XMLElement* characterNode);
+	void verifyAllAxesHaveText(XMLElement* pointNodes);
+
 	void printNodeData(XMLElement* node);
 	void printMapData(map<string, XMLElement*> map);
 };

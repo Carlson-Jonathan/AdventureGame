@@ -42,7 +42,6 @@ string Battle::selectRandomBackground() {
 	short randNum = Miscellaneous::generateRandomNumber(13);	
 
 	string backgrounds[] = {
-		"forrestBackground",
 		"meadowBackground",
 		"desertBackground",
 		"battleback1",

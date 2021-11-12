@@ -29,13 +29,15 @@ private:
 		{"cactopus", 			"Images/Characters/cactopus.png"},
 		{"heroine",             "Images/Characters/heroine.png"},
 		{"rabbit",              "Images/Characters/rabbit.png"},
+		{"sara",                "Images/Characters/sara.png"},
+		{"spider",              "Images/Characters/spider.png"},		
 
 		// Ella's Backgrounds
 		{"forrestBackground", 	"Images/BattleBackgrounds/forrestBackground.png"},
 		{"meadowBackground", 	"Images/BattleBackgrounds/meadowBackground.png"},
 		{"desertBackground", 	"Images/BattleBackgrounds/desertBackground.png"},
 
-		// From Opengameart.org
+		// Battle Backgrounds From Opengameart.org
 		{"battleback1", 		"Images/BattleBackgrounds/battleback1.png"},
 		{"battleback2", 		"Images/BattleBackgrounds/battleback2.png"},
 		{"battleback3", 		"Images/BattleBackgrounds/battleback3.png"},

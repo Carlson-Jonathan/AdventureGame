@@ -21,6 +21,7 @@ public:
 	BattleAnimation() {}
 	BattleAnimation(string character, Initializer & globalData) :
 	spriteSchematicXML(character, globalData) {
+		this->character = character;
 
 		rectangle.left   = spriteSchematicXML.idle[0].first;
 		rectangle.top    = spriteSchematicXML.idle[0].second;
@@ -31,6 +32,7 @@ public:
 		sprite.setTexture(globalData.textures.textures[character]);
 	}
 
+	string character;
 	SpriteSchematicXML spriteSchematicXML;
 
 	sf::IntRect rectangle;

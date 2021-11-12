@@ -49,7 +49,7 @@ private:
 	};
 
 	vector<sf::Vector2f> enemyScreenPositions = {
-		{sf::Vector2f(800.f, 250.f)}, // top
+		{sf::Vector2f(825.f, 350.f)}, // top
 		{sf::Vector2f(900.f, 455.f)}, // middle
 		{sf::Vector2f(1000.f, 600.f)} // bottom
 	};

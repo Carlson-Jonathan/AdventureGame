@@ -30,10 +30,12 @@ private:
 		{"heroine",             "Images/Characters/heroine.png"},
 		{"rabbit",              "Images/Characters/rabbit.png"},
 		{"sara",                "Images/Characters/sara.png"},
-		{"spider",              "Images/Characters/spider.png"},		
+		{"spider",              "Images/Characters/spider.png"},
+
+		// Non-Characters
+		{"menuWheel",              "Images/Interface/menuWheel.png"},
 
 		// Ella's Backgrounds
-		{"forrestBackground", 	"Images/BattleBackgrounds/forrestBackground.png"},
 		{"meadowBackground", 	"Images/BattleBackgrounds/meadowBackground.png"},
 		{"desertBackground", 	"Images/BattleBackgrounds/desertBackground.png"},
 

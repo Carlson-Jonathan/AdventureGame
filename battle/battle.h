@@ -10,6 +10,7 @@
 #include "../initializer.h"
 #include <iostream>
 #include <memory>
+#include "menuWheel.h"
 #include "../miscellaneous.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -52,6 +53,21 @@ private:
 		{sf::Vector2f(825.f, 350.f)}, // top
 		{sf::Vector2f(900.f, 455.f)}, // middle
 		{sf::Vector2f(1000.f, 600.f)} // bottom
+	};
+
+	vector<string> backgrounds = {
+		"meadowBackground",
+		"desertBackground",
+		"battleback1",
+		"battleback2",
+		"battleback3",
+		"battleback4",
+		"battleback5",
+		"battleback6",
+		"battleback7",
+		"battleback8",
+		"battleback9",
+		"battleback10"
 	};
 
 	vector<shared_ptr<Hero>> playerParty;

@@ -38,8 +38,8 @@ public:
 	sf::IntRect rectangle;
 	sf::Sprite sprite;
 	sf::Clock clock;
-	sf::Vector2f screenPositionX;
-	sf::Vector2f screenPositionY;
+	// sf::Vector2f screenPositionX;
+	// sf::Vector2f screenPositionY;
 
 	short numberOfImages = spriteSchematicXML.idle.size();
 	short currentImageNumber = 1;

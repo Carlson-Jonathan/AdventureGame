@@ -21,6 +21,7 @@ public:
 		this->globalData = &globalData;
 		setCharacterNode();
 		populateEntireSchematic();
+		centerPoint = {width / 2, height / 2};
 		// printSchematicData();
 	}
 
@@ -29,6 +30,7 @@ public:
     string fileName;
     int width;           
     int height;
+    pair<short, short> centerPoint;
     vector<float> animationSpeeds;
 
     // Arrays of points

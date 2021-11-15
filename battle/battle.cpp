@@ -8,6 +8,35 @@ void Battle::setScreenPlacementForCharacters() {
 	for(short i = 0; i < enemyGroup.size(); i++) { 
 		enemyGroup[i]->battleAnimation.sprite.setPosition(enemyScreenPositions[i]);
 	}
+
+	menuWheel.battleAnimation.sprite.setPosition(menuWheelPosition);
+}
+
+/*------------------------------------------------------------------------------------------------*/
+
+void Battle::centerMenuWheelOnCharacter(shared_ptr<Hero> character) {
+	pair<short, short> menuWheelCenter = 
+    	menuWheel.battleAnimation.spriteSchematicXML.centerPoint;
+
+    cout << "Character width: " << character->battleAnimation.spriteSchematicXML.width << endl;
+    cout << "Character height: "<< character->battleAnimation.spriteSchematicXML.height << endl;
+
+    pair<short, short> characterCenter = character->battleAnimation.spriteSchematicXML.centerPoint;
+
+    cout << "Wheel centerpoint : " << menuWheelCenter.first << ", " << menuWheelCenter.second << endl;
+	cout << character->name << " center = " << characterCenter.first << ", " << characterCenter.second << endl;
+
+	menuWheelPosition = heroScreenPositions[0];
+
+	cout << "menuWheelPosition = " << menuWheelPosition.x      << ", " << menuWheelPosition.y << endl;
+	cout << character->name << " position = " << heroScreenPositions[2].x << ", " << heroScreenPositions[2].y << endl;
+
+    menuWheelPosition.x = menuWheelPosition.x - menuWheelCenter.first + characterCenter.first;
+    menuWheelPosition.y = menuWheelPosition.y - menuWheelCenter.second + characterCenter.second;
+
+  	cout << "menuWheelPosition = " << menuWheelPosition.x      << ", " << menuWheelPosition.y << endl;
+
+
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -25,6 +54,9 @@ void Battle::generateFullBattlescape() {
 		// i->displayCharacterData();
 		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 	}
+
+	menuWheel.battleAnimation.drawAndAnimateSprite(globalData->window);
+
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -50,7 +82,7 @@ void Battle::drawBackground() {
 	globalData->window.draw(sprite);
 }
 
-
+/*------------------------------------------------------------------------------------------------*/
 
 
 /*################################################################################################*/

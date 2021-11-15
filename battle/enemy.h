@@ -13,6 +13,7 @@ public:
 
 	Enemy() {}
 	Enemy(string character, Initializer & globalData) {
+		this->name             = character;
 		this->maxHitPoints 	   = 100;
 		this->hitPoints 	   = 85;
 		this->maxBloodPoints   = 90;

@@ -20,12 +20,14 @@ int main() {
 	Initializer globalData;
 	
    // Create Player Party
-   vector<shared_ptr<Hero>> playerParty;
-   playerParty.push_back(shared_ptr<Hero>(new Hero("heroine", globalData)));
-   playerParty.push_back(shared_ptr<Hero>(new Hero("dragon",  globalData)));
-   playerParty.push_back(shared_ptr<Hero>(new Hero("rabbit",  globalData)));
+   vector<shared_ptr<Character>> playerParty;
+   playerParty.push_back(shared_ptr<Character>(new Character("heroine", globalData)));
+   playerParty.push_back(shared_ptr<Character>(new Character("dragon",  globalData)));
+   playerParty.push_back(shared_ptr<Character>(new Character("rabbit",  globalData)));
 
    Battle battle(playerParty, globalData);
+
+
 
    // Master window loop. 
    while(globalData.window.isOpen()) {
@@ -61,6 +63,8 @@ int main() {
       *********************************************************************************************/
       globalData.window.display();
    }
+
+
 
     return 0;
 }

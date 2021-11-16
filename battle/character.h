@@ -15,6 +15,18 @@ class Character {
 public:
 
 	Character() {}
+	Character(string character, Initializer & globalData) {
+		this->name             = character;
+		this->maxHitPoints	   = 100;
+		this->hitPoints 	   = 85;
+		this->maxBloodPoints   = 90;
+		this->bloodPoints 	   = 78;
+		this->maxEssencePoints = 50;
+		this->essencePoints    = 46;
+		this->speed 		   = 80;
+		this->precision 	   = 92;
+		this->battleAnimation  = BattleAnimation(character, globalData);
+	}	
 
 	short maxHitPoints,
 		  hitPoints,

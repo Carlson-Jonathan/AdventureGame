@@ -4,9 +4,7 @@
 #define BATTLE_H
 
 #include "character.h"
-#include "enemy.h"
 #include "../gameSound.h"
-#include "hero.h"
 #include "../initializer.h"
 #include <iostream>
 #include <memory>
@@ -22,7 +20,7 @@ using namespace std;
 class Battle {
 public:
 	Battle() {}
-	Battle(vector<shared_ptr<Hero>> playerParty, Initializer & globalData) : menuWheel(globalData) {
+	Battle(vector<shared_ptr<Character>> playerParty, Initializer & globalData) : menuWheel(globalData) {
 		this->playerParty = playerParty;
 		this->globalData = &globalData;
 
@@ -31,6 +29,9 @@ public:
    	 	setScreenPlacementForCharacters();
 		centerMenuWheelOnCharacter(playerParty[0]);
    	 	gameSound.loadAndPlayRandomBattleSong();
+
+   	 	displayCharacterScreenSpriteData(playerParty[1]);
+   	 	displayMenuWheelSpriteData();
 	}
 
 	void generateFullBattlescape();
@@ -40,12 +41,10 @@ private:
 
     Initializer* globalData;
     GameSound    gameSound;  
-
     MenuWheel    menuWheel;
-    sf::Vector2f menuWheelPosition;
     
-	vector<shared_ptr<Hero>>  playerParty;
-  	vector<shared_ptr<Enemy>> enemyGroup;
+	vector<shared_ptr<Character>> playerParty;
+  	vector<shared_ptr<Character>> enemyGroup;
 
 	short frameNumber    = 0;
 	short enemyGroupSize = 3;
@@ -72,10 +71,10 @@ private:
 	void drawBackground();
 	void generateEnemyGroup(Initializer & globalData);
 	void setScreenPlacementForCharacters();
-	void centerMenuWheelOnCharacter(shared_ptr<Hero> character);
+	void centerMenuWheelOnCharacter(shared_ptr<Character> character);
 
 	void displayCharacterDataHeading();
-	void displayCharacterScreenSpriteData(Character character);
+	void displayCharacterScreenSpriteData(shared_ptr<Character> character);
 	void displayMenuWheelSpriteData();
 };
 

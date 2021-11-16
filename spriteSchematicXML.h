@@ -21,7 +21,6 @@ public:
 		this->globalData = &globalData;
 		setCharacterNode();
 		populateEntireSchematic();
-		centerPoint = {width / 2, height / 2};
 		// printSchematicData();
 	}
 
@@ -52,8 +51,8 @@ private:
 
     void setCharacterNode();
 	void populateEntireSchematic();
-	void populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray);
 	void populatePointsInAllActions();
+	void populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray);
 	void populateActionSpeeds(char* actionName);
 	void printActionPoints(vector<pair<short, short>> points);
 };

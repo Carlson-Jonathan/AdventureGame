@@ -26,41 +26,33 @@ public:
 		this->playerParty = playerParty;
 		this->globalData = &globalData;
 
+		selectRandomBackground();
    	 	generateEnemyGroup(globalData);
-		centerMenuWheelOnCharacter(playerParty[0]);
    	 	setScreenPlacementForCharacters();
+		centerMenuWheelOnCharacter(playerParty[0]);
    	 	gameSound.loadAndPlayRandomBattleSong();
-		background = selectRandomBackground();
 	}
 
 	void generateFullBattlescape();
 
+
 private:
 
-    GameSound         		  gameSound;  
-    Initializer*      		  globalData;
-	TextureManager*   		  textures;
-	sf::RenderWindow* 		  window;
-    sf::Sprite        		  sprite;
-    MenuWheel                 menuWheel;
-    sf::Vector2f              menuWheelPosition;
+    Initializer* globalData;
+    GameSound    gameSound;  
+
+    MenuWheel    menuWheel;
+    sf::Vector2f menuWheelPosition;
+    
 	vector<shared_ptr<Hero>>  playerParty;
   	vector<shared_ptr<Enemy>> enemyGroup;
 
-	vector<sf::Vector2f> heroScreenPositions = {
-		{sf::Vector2f(400.f, 300.f)}, // top
-		{sf::Vector2f(350.f, 375.f)}, // middle
-		{sf::Vector2f(300.f, 550.f)}  // bottom
-	};
+	short frameNumber    = 0;
+	short enemyGroupSize = 3;
 
-	vector<sf::Vector2f> enemyScreenPositions = {
-		{sf::Vector2f(825.f, 350.f)}, // top
-		{sf::Vector2f(900.f, 455.f)}, // middle
-		{sf::Vector2f(1000.f, 600.f)} // bottom
-	};
-
-
-	vector<string> backgrounds = {
+    sf::Sprite background;
+	string backgroundSelection;
+	vector<string> availableBackgrounds = {
 		"meadowBackground",
 		"desertBackground",
 		"battleback1",
@@ -76,18 +68,15 @@ private:
 	};
 
 
-	short frameNumber    = 0;
-	short enemyGroupSize = 3;
-
-	string background;
-	string musicFile  = "Sounds/Music/battle1.ogg";
-
-	string selectRandomBackground();
-	void centerMenuWheelOnCharacter(shared_ptr<Hero> character);
-	void setScreenPlacementForCharacters();
-	void generateEnemyGroup(Initializer & globalData);
+	void selectRandomBackground();
 	void drawBackground();
+	void generateEnemyGroup(Initializer & globalData);
+	void setScreenPlacementForCharacters();
+	void centerMenuWheelOnCharacter(shared_ptr<Hero> character);
+
 	void displayCharacterDataHeading();
+	void displayCharacterScreenSpriteData(Character character);
+	void displayMenuWheelSpriteData();
 };
 
 #endif // BATTLE_H

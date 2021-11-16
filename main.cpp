@@ -21,9 +21,9 @@ int main() {
 	
    // Create Player Party
    vector<shared_ptr<Hero>> playerParty;
-   playerParty.push_back(shared_ptr<Hero>(new Hero("heroine",  globalData)));
-   playerParty.push_back(shared_ptr<Hero>(new Hero("dragon",   globalData)));
-   playerParty.push_back(shared_ptr<Hero>(new Hero("rabbit",   globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("heroine", globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("dragon",  globalData)));
+   playerParty.push_back(shared_ptr<Hero>(new Hero("rabbit",  globalData)));
 
    Battle battle(playerParty, globalData);
 

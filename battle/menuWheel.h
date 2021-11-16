@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef MENUWHEEL_H
 #define MENUWHEEL_H
 
@@ -11,9 +13,10 @@ public:
 	MenuWheel() {}
 	MenuWheel(Initializer & globalData) {
 		setRectangle(globalData);
-		setOthers();
+		setOtherData();
 	}
 
+	bool isVisible = true;
 	short currentRotation;
 	short selection;
 
@@ -22,18 +25,20 @@ public:
 	void rotateClockwise();
 	void rotateCounterClockwise();
 
+private:
+
 	void setRectangle(Initializer & globalData) {
-		battleAnimation.rectangle.left = 0;
-		battleAnimation.rectangle.top = 0;
-		battleAnimation.rectangle.width = 141;
-		battleAnimation.spriteSchematicXML.width = 141;
-		battleAnimation.rectangle.height = 142;
+		battleAnimation.rectangle.left            = 0;
+		battleAnimation.rectangle.top             = 0;
+		battleAnimation.rectangle.width           = 141;
+		battleAnimation.spriteSchematicXML.width  = 141;
+		battleAnimation.rectangle.height          = 142;
 		battleAnimation.spriteSchematicXML.height = 142;
 		battleAnimation.sprite.setTextureRect(battleAnimation.rectangle);
 		battleAnimation.sprite.setTexture(globalData.textures.textures["menuWheel"]);
 	}
 
-	void setOthers() {
+	void setOtherData() {
 		battleAnimation.spriteSchematicXML.idle = {{0, 0}, {141, 0}};
 		battleAnimation.spriteSchematicXML.animationSpeeds.push_back(0.5f);
 		battleAnimation.spriteSchematicXML.centerPoint = {

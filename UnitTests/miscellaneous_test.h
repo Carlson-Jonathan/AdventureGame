@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef MISCELLANEOUS_TEST_H
 #define MISCELLANEOUS_TEST_H
 

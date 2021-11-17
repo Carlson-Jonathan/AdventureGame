@@ -29,6 +29,7 @@ public:
     string fileName;
     int width;           
     int height;
+    pair<short, short> centerPoint;
     vector<float> animationSpeeds;
 
     // Arrays of points
@@ -50,8 +51,8 @@ private:
 
     void setCharacterNode();
 	void populateEntireSchematic();
-	void populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray);
 	void populatePointsInAllActions();
+	void populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray);
 	void populateActionSpeeds(char* actionName);
 	void printActionPoints(vector<pair<short, short>> points);
 };

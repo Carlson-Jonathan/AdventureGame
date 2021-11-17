@@ -21,6 +21,7 @@ public:
 	BattleAnimation() {}
 	BattleAnimation(string character, Initializer & globalData) :
 	spriteSchematicXML(character, globalData) {
+		this->character = character;
 
 		rectangle.left   = spriteSchematicXML.idle[0].first;
 		rectangle.top    = spriteSchematicXML.idle[0].second;
@@ -31,13 +32,13 @@ public:
 		sprite.setTexture(globalData.textures.textures[character]);
 	}
 
+	string character;
 	SpriteSchematicXML spriteSchematicXML;
 
 	sf::IntRect rectangle;
 	sf::Sprite sprite;
 	sf::Clock clock;
-	sf::Vector2f screenPositionX;
-	sf::Vector2f screenPositionY;
+	sf::Vector2f screenPosition;
 
 	short numberOfImages = spriteSchematicXML.idle.size();
 	short currentImageNumber = 1;

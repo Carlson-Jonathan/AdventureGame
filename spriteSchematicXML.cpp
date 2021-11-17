@@ -7,27 +7,13 @@ void SpriteSchematicXML::setCharacterNode() {
 /*------------------------------------------------------------------------------------------------*/
 
 void SpriteSchematicXML::populateEntireSchematic() {
-	this->name     = characterNode->FirstChildElement("name")->GetText();
-	this->fileName = characterNode->FirstChildElement("fileName")->GetText();
-	this->width    = stoi(characterNode->FirstChildElement("imgWidth")->GetText());
-	this->height   = stoi(characterNode->FirstChildElement("imgHeight")->GetText());
+	this->name        = characterNode->FirstChildElement("name")->GetText();
+	this->fileName    = characterNode->FirstChildElement("fileName")->GetText();
+	this->width       = stoi(characterNode->FirstChildElement("imgWidth")->GetText());
+	this->height      = stoi(characterNode->FirstChildElement("imgHeight")->GetText());
+	this->centerPoint = {width / 2, height / 2};
 	populatePointsInAllActions();
 }
-
-/*------------------------------------------------------------------------------------------------*/
-
-void SpriteSchematicXML::populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray) {
-
-	XMLElement* Xnode = characterNode->FirstChildElement(actionName)->
-	                    FirstChildElement("X_axes")->FirstChildElement();
-
-	XMLElement* Ynode = characterNode->FirstChildElement(actionName)->
-	                    FirstChildElement("Y_axes")->FirstChildElement();
-
-    for(;Xnode; Xnode = Xnode->NextSiblingElement(), Ynode = Ynode->NextSiblingElement()) {	  
-        pointArray.push_back({{short(stoi(Xnode->GetText()))}, {short(stoi(Ynode->GetText()))}});
-	}
-}	
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -53,14 +39,30 @@ void SpriteSchematicXML::populatePointsInAllActions() {
 
 /*------------------------------------------------------------------------------------------------*/
 
+void SpriteSchematicXML::populateActionPoints(char* actionName, vector<pair<short, short>> & pointArray) {
+
+	XMLElement* Xnode = characterNode->FirstChildElement(actionName)->
+	                    FirstChildElement("X_axes")->FirstChildElement();
+
+	XMLElement* Ynode = characterNode->FirstChildElement(actionName)->
+	                    FirstChildElement("Y_axes")->FirstChildElement();
+
+    for(;Xnode; Xnode = Xnode->NextSiblingElement(), Ynode = Ynode->NextSiblingElement()) {	  
+        pointArray.push_back({{short(stoi(Xnode->GetText()))}, {short(stoi(Ynode->GetText()))}});
+	}
+}	
+
+/*------------------------------------------------------------------------------------------------*/
+
 void SpriteSchematicXML::populateActionSpeeds(char* actionName) {
 
 	const char* actionSpeed = characterNode->FirstChildElement(actionName)->
 					  FirstChildElement("animationSpeed")->GetText();
 
 	if(!actionSpeed) {
-		cout << "Error retrieving action speed for " << character << ":" << actionName << endl;
-		throw perror;
+		cout << "Error retrieving XML <animationSpeed> for <" << character << "><" << actionName 
+		<< ">" << endl;
+		exit(3);
 	}
 
 	string sActionSpeed = actionSpeed;					  

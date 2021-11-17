@@ -8,10 +8,10 @@ void BattleAnimation::drawAndAnimateSprite(sf::RenderWindow & window) {
 		setNewRectanglePosition(spriteSchematicXML.idle[currentImageNumber - 1]);
 		currentImageNumber++;
 		clock.restart();
-	}
 
-	if(currentImageNumber >= numberOfImages - 1)
+		if(currentImageNumber >= numberOfImages)
 		currentImageNumber = 0;
+	}
 }
 
 /*------------------------------------------------------------------------------------------------*/

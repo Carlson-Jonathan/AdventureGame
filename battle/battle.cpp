@@ -68,7 +68,7 @@ void Battle::centerMenuWheelOnCharacter(shared_ptr<Character> character) {
 
 /*------------------------------------------------------------------------------------------------*/
 
-void Battle::generateFullBattlescape() {
+void Battle::drawAllBattleSpritesAndAnimations() {
 
 	drawBackground();
 
@@ -89,9 +89,12 @@ void Battle::generateFullBattlescape() {
 
 /*------------------------------------------------------------------------------------------------*/
 
-
-
-
+void Battle::runMainCombatSequence() {
+	eventHandler.listen();
+    globalData->window.clear(sf::Color(102, 255, 255));
+    drawAllBattleSpritesAndAnimations();
+    globalData->window.display();
+}
 
 /*################################################################################################*/
 

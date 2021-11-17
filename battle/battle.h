@@ -4,6 +4,7 @@
 #define BATTLE_H
 
 #include "character.h"
+#include "../eventHandler.h"
 #include "../gameSound.h"
 #include "../initializer.h"
 #include <iostream>
@@ -20,7 +21,9 @@ using namespace std;
 class Battle {
 public:
 	Battle() {}
-	Battle(vector<shared_ptr<Character>> playerParty, Initializer & globalData) : menuWheel(globalData) {
+	Battle(vector<shared_ptr<Character>> playerParty, Initializer & globalData) : 
+		menuWheel(globalData), eventHandler(globalData) {
+
 		this->playerParty = playerParty;
 		this->globalData = &globalData;
 
@@ -32,14 +35,15 @@ public:
 
    	 	displayCharacterScreenSpriteData(playerParty[1]);
    	 	displayMenuWheelSpriteData();
+   	 	// runMainCombatSequence();
 	}
 
-	void generateFullBattlescape();
-
+	void runMainCombatSequence();
 
 private:
 
     Initializer* globalData;
+    EventHandler eventHandler;
     GameSound    gameSound;  
     MenuWheel    menuWheel;
     
@@ -48,6 +52,8 @@ private:
 
 	short frameNumber    = 0;
 	short enemyGroupSize = 3;
+
+	sf::Event event;
 
     sf::Sprite background;
 	string backgroundSelection;
@@ -72,6 +78,10 @@ private:
 	void generateEnemyGroup(Initializer & globalData);
 	void setScreenPlacementForCharacters();
 	void centerMenuWheelOnCharacter(shared_ptr<Character> character);
+	void drawAllBattleSpritesAndAnimations();
+
+	void closeWindow();
+	void resizeWindow();
 
 	void displayCharacterDataHeading();
 	void displayCharacterScreenSpriteData(shared_ptr<Character> character);

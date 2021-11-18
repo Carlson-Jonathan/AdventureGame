@@ -29,13 +29,9 @@ public:
 
 		selectRandomBackground();
    	 	generateEnemyGroup(globalData);
-   	 	setScreenPlacementForCharacters();
+   	 	setScreenPlacementForAllCharacters();
 		centerMenuWheelOnCharacter(playerParty[0]);
    	 	gameSound.loadAndPlayRandomBattleSong();
-
-   	 	displayCharacterScreenSpriteData(playerParty[1]);
-   	 	displayMenuWheelSpriteData();
-   	 	// runMainCombatSequence();
 	}
 
 	void runMainCombatSequence();
@@ -76,7 +72,8 @@ private:
 	void selectRandomBackground();
 	void drawBackground();
 	void generateEnemyGroup(Initializer & globalData);
-	void setScreenPlacementForCharacters();
+	void setScreenPlacementForAllCharacters();
+	void setCharacterScreenPosition(shared_ptr<Character> character, sf::Vector2f position);
 	void centerMenuWheelOnCharacter(shared_ptr<Character> character);
 	void drawAllBattleSpritesAndAnimations();
 

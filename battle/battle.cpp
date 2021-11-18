@@ -23,7 +23,7 @@ void Battle::generateEnemyGroup(Initializer & globalData) {
 
 /*------------------------------------------------------------------------------------------------*/
 
-void Battle::setScreenPlacementForCharacters() {
+void Battle::setScreenPlacementForAllCharacters() {
 
 	vector<sf::Vector2f> heroScreenPositions = {
 		{sf::Vector2f(400.f, 300.f)}, // top row
@@ -38,15 +38,20 @@ void Battle::setScreenPlacementForCharacters() {
 	};
 
 	for(short i = 0; i < playerParty.size(); i++) {
-		playerParty[i]->battleAnimation.screenPosition = heroScreenPositions[i];
-		playerParty[i]->battleAnimation.sprite.setPosition(playerParty[i]->battleAnimation.screenPosition);
+		setCharacterScreenPosition(playerParty[i], heroScreenPositions[i]);
 	}
 
-	for(short i = 0; i < enemyGroup.size(); i++) { 
-		enemyGroup[i]->battleAnimation.screenPosition = enemyScreenPositions[i];
-		enemyGroup[i]->battleAnimation.sprite.setPosition(enemyScreenPositions[i]);
+	for(short i = 0; i < enemyGroup.size(); i++) {
+		setCharacterScreenPosition(enemyGroup[i], enemyScreenPositions[i]);
 	}
 }
+
+/*------------------------------------------------------------------------------------------------*/
+
+	void Battle::setCharacterScreenPosition(shared_ptr<Character> character, sf::Vector2f position) {
+		character->battleAnimation.screenPosition = position;
+		character->battleAnimation.sprite.setPosition(position);
+	}
 
 /*------------------------------------------------------------------------------------------------*/
 

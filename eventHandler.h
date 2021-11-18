@@ -1,3 +1,5 @@
+// Copyright Jonathan Carlson 2021
+
 #ifndef EVENTHANDLER_H
 #define EVENTHANDLER_H
 

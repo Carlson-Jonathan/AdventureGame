@@ -22,6 +22,14 @@ void BattleAnimation::setNewRectanglePosition(pair<short, short> point) {
 	sprite.setTextureRect(rectangle);
 }
 
+/*------------------------------------------------------------------------------------------------*/
+
+// This sets the character's center point on the screen position point
+
+void BattleAnimation::setScreenPosition(sf::Vector2f newPosition) {
+	screenPosition.x = newPosition.x - spriteSchematicXML.centerPoint.first;
+	screenPosition.y = newPosition.y - spriteSchematicXML.centerPoint.second;
+}
 
 
 /*################################################################################################*/

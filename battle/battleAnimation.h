@@ -34,6 +34,7 @@ public:
 
 	string character;
 	SpriteSchematicXML spriteSchematicXML;
+	short currentImageNumber = 1;
 
 	sf::IntRect rectangle;
 	sf::Sprite sprite;
@@ -41,11 +42,12 @@ public:
 	sf::Vector2f screenPosition;
 
 	short numberOfImages = spriteSchematicXML.idle.size();
-	short currentImageNumber = 1;
 
+	void setScreenPosition(sf::Vector2f newPosition);
 	void drawAndAnimateSprite(sf::RenderWindow & window);
 	void setNewRectanglePosition(pair<short, short> point);
 	void displayAnimationClock();
+
 };
 
 #endif // BATTLEANIMATION_H

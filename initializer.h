@@ -14,6 +14,7 @@ public:
 
 	Initializer() : window(sf::VideoMode(screenWidth, screenHeight), "Jon's New Adventure Game") {
 		window.setFramerateLimit(frameRate);
+		srand (time(NULL));
 	}
 
 	short screenWidth  = 1333;

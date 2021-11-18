@@ -1,12 +1,5 @@
 #include "battle.h"
 
-void Battle::selectRandomBackground() {
-	short randNum = Miscellaneous::generateRandomNumber(availableBackgrounds.size() - 1);	
-	this->backgroundSelection = availableBackgrounds[randNum];
-}
-
-/*------------------------------------------------------------------------------------------------*/
-
 void Battle::drawBackground() {
 	background.setTexture(globalData->textures.textures[backgroundSelection]);  
 	background.setOrigin(0, 0);		
@@ -16,41 +9,29 @@ void Battle::drawBackground() {
 /*------------------------------------------------------------------------------------------------*/
 
 void Battle::generateEnemyGroup(Initializer & globalData) {
-	enemyGroup.push_back(shared_ptr<Character>(new Character("spider",   globalData)));
-	enemyGroup.push_back(shared_ptr<Character>(new Character("cactopus", globalData)));
-	enemyGroup.push_back(shared_ptr<Character>(new Character("sara",     globalData)));
+	for(auto i : battleSchematic.enemyGroup) {
+		this->enemyGroup.push_back(shared_ptr<Character>(new Character(i, globalData)));
+	}
 }
 
 /*------------------------------------------------------------------------------------------------*/
 
-void Battle::setScreenPlacementForAllCharacters() {
-
-	vector<sf::Vector2f> heroScreenPositions = {
-		{sf::Vector2f(400.f, 300.f)}, // top row
-		{sf::Vector2f(350.f, 375.f)}, // middle row
-		{sf::Vector2f(300.f, 550.f)}  // bottom row
-	};
-
-	vector<sf::Vector2f> enemyScreenPositions = {
-		{sf::Vector2f( 825.f, 350.f)}, // top row
-		{sf::Vector2f( 900.f, 455.f)}, // middle row
-		{sf::Vector2f(1000.f, 600.f)}  // bottom row
-	};
+void Battle::defineScreenPlacementForAllCharacters() {
 
 	for(short i = 0; i < playerParty.size(); i++) {
-		setCharacterScreenPosition(playerParty[i], heroScreenPositions[i]);
+		setCharacterScreenPosition(playerParty[i], battleSchematic.heroScreenPositions[i]);
 	}
 
 	for(short i = 0; i < enemyGroup.size(); i++) {
-		setCharacterScreenPosition(enemyGroup[i], enemyScreenPositions[i]);
+		setCharacterScreenPosition(enemyGroup[i], battleSchematic.enemyLineCharacterPositions[i]);
 	}
 }
 
 /*------------------------------------------------------------------------------------------------*/
 
 	void Battle::setCharacterScreenPosition(shared_ptr<Character> character, sf::Vector2f position) {
-		character->battleAnimation.screenPosition = position;
-		character->battleAnimation.sprite.setPosition(position);
+		character->battleAnimation.setScreenPosition(position);
+		character->battleAnimation.sprite.setPosition(character->battleAnimation.screenPosition);
 	}
 
 /*------------------------------------------------------------------------------------------------*/

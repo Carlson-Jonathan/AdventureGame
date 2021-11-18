@@ -25,7 +25,9 @@ int main() {
    playerParty.push_back(shared_ptr<Character>(new Character("dragon",  globalData)));
    playerParty.push_back(shared_ptr<Character>(new Character("rabbit",  globalData)));
 
-   Battle battle(playerParty, globalData);
+   BattleSchematic battleSchematic(playerParty);
+
+   Battle battle(battleSchematic, globalData);
 
 
 	/**************************************  Main Game Loop ****************************************/

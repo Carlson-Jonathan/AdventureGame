@@ -10,11 +10,10 @@ using namespace std;
 void printResults(const map<string, bool> & allResults) {
     cout << "############################# Unit Test Summary: #############################" << endl;
     for(auto i : allResults) {
-        if(i.second)
-            cout << "Passed: ";
+        if(i.second) 
+            cout << "Passed: " << i.first << endl;
         else
-            cout << "FAILED: ";
-        cout << i.first << endl;
+            cout << "FAILED: " << i.first << " <--Errors!" << endl;
     }
 }
 

@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include "../miscellaneous.h"
+#include <set>
 #include <typeinfo>
 #include <vector>
 using namespace std;
@@ -57,6 +58,17 @@ bool Miscellaneous_Test::generateRandomNumber_test() {
 
 		return false;
 	}
+
+	set<short> randomNumbers;
+	for(int i = 0; i < 10; i++) {
+		randomNumbers.insert(Miscellaneous::generateRandomNumber(10));
+	}
+
+	if(randomNumbers.size() == 1) {
+		cout << "ERROR: Random number generator is generating only duplicates!" << endl;
+		return false;
+	}
+ 	
 
 	return true;
 }

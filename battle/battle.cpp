@@ -59,13 +59,10 @@ void Battle::drawAllBattleSpritesAndAnimations() {
 	drawBackground();
 
 	for(shared_ptr<Character> i : playerParty) {
-		// i->displayCharacterData();
 		i->battleAnimation.drawAndAnimateSprite(globalData->window);
-		// i->spriteSchematic->displayRawCharacterData();
 	}
 
 	for(shared_ptr<Character> i : enemyGroup) {
-		// i->displayCharacterData();
 		i->battleAnimation.drawAndAnimateSprite(globalData->window);
 	}
 

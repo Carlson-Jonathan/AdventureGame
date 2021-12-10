@@ -38,7 +38,7 @@ public:
    	 	gameSound.loadAndPlayBattleMusic(battleSchematic.availableBattleSongs[randNum - 1]);
 	}
 
-	void runMainCombatSequence();
+	void runMainCombatLoop();
 
 private:
 

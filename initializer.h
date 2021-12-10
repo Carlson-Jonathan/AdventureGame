@@ -22,6 +22,7 @@ public:
 	short frameRate    = 60;
 
 	sf::RenderWindow window;
+
 	TextureManager   textures;
 	XMLParser        xmlParser;
 };

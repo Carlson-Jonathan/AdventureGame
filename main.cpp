@@ -29,11 +29,12 @@ int main() {
 
    Battle battle(battleSchematic, globalData);
 
-
 	/**************************************  Main Game Loop ****************************************/
    while(globalData.window.isOpen()) {
 
-   	battle.runMainCombatSequence();
+
+
+   	battle.runMainCombatLoop();
 
    }
    /***********************************************************************************************/

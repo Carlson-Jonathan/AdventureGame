@@ -72,7 +72,7 @@ void Battle::drawAllBattleSpritesAndAnimations() {
 
 /*------------------------------------------------------------------------------------------------*/
 
-void Battle::runMainCombatSequence() {
+void Battle::runMainCombatLoop() {
 	eventHandler.listen();
     globalData->window.clear(sf::Color(102, 255, 255));
     drawAllBattleSpritesAndAnimations();

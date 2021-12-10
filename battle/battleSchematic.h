@@ -25,6 +25,7 @@ public:
 	vector<shared_ptr<Character>> playerParty;
 	vector<sf::Vector2f> enemyLineCharacterPositions;
 
+	// Sprite centers are placed in these positions
 	vector<sf::Vector2f> heroScreenPositions = {
 		{sf::Vector2f(405.f, 325.f)}, // top row
 		{sf::Vector2f(375.f, 475.f)}, // middle row
@@ -79,15 +80,18 @@ private:
 
 	void generateEnemyLineCharacterPositions() {
 		
-		float firstEnemyYPos = 475.f;
+		float firstEnemyYPos;
+		float firstEnemyXPos = 958.f;
 		if(numberOfEnemies == 2)
 			firstEnemyYPos = 550.f;
+		else
+			firstEnemyYPos = 475.f;
 
 		float xOffset = 30.0f;
 		float yOffset = 150.0f;
 		float rowSpacing = 150.0f;
 
-		sf::Vector2f firstEnemy  = {958.f, firstEnemyYPos};
+		sf::Vector2f firstEnemy  = {firstEnemyXPos, firstEnemyYPos};
 		sf::Vector2f secondEnemy = {firstEnemy.x - xOffset, firstEnemy.y - yOffset};
 		sf::Vector2f thirdEnemy  = {firstEnemy.x + xOffset, firstEnemy.y + yOffset};  
 		sf::Vector2f fourthEnemy = {firstEnemy.x + rowSpacing,      

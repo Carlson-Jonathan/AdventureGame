@@ -24,6 +24,9 @@ private:
 	sf::Texture texture;
 	vector< pair<string, string> > textureFilePaths = {
 
+		// Party Screen Textures
+		{"partyScreen",         "Images/PartyScreen/partyScreen.png"},
+
 		// Character textures
 		{"dragon",				"Images/Characters/dragon.png"},
 		{"cactopus", 			"Images/Characters/cactopus.png"},
@@ -33,7 +36,7 @@ private:
 		{"spider",              "Images/Characters/spider.png"},
 
 		// Non-Characters
-		{"menuWheel",              "Images/Interface/menuWheel.png"},
+		{"menuWheel",           "Images/Interface/menuWheel.png"},
 
 		// Ella's Backgrounds
 		{"meadowBackground", 	"Images/BattleBackgrounds/meadowBackground.png"},

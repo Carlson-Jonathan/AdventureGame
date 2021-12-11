@@ -8,6 +8,7 @@
 #include "initializer.h"
 #include <iostream>
 #include <memory>
+#include "PartyScreen/partyScreen.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -17,7 +18,10 @@ using namespace std;
 
 int main() {
 
+	cout << "Check x" << endl;
 	Initializer globalData;
+	cout << "Check y" << endl;	
+   cout << "check x" << endl;
 	
    // Create Player Party
    vector<shared_ptr<Character>> playerParty;
@@ -25,16 +29,16 @@ int main() {
    playerParty.push_back(shared_ptr<Character>(new Character("dragon",  globalData)));
    playerParty.push_back(shared_ptr<Character>(new Character("rabbit",  globalData)));
 
-   BattleSchematic battleSchematic(playerParty);
+	PartyScreen partyScreen(globalData, playerParty);
+   // BattleSchematic battleSchematic(playerParty);
 
-   Battle battle(battleSchematic, globalData);
+   // Battle battle(battleSchematic, globalData);
 
 	/**************************************  Main Game Loop ****************************************/
    while(globalData.window.isOpen()) {
 
-
-
-   	battle.runMainCombatLoop();
+   	partyScreen.runPartyScreenLoop();
+   	// battle.runMainCombatLoop();
 
    }
    /***********************************************************************************************/

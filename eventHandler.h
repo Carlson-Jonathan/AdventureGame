@@ -32,14 +32,14 @@ public:
 					mouseButton();
 					break;
 				case sf::Event::MouseButtonReleased:
-					cout << "Relesed!" << endl;
+					cout << "Released!" << endl;
 					break;		
 				case sf::Event::MouseWheelMoved:
 					// Scroll Up = 1, Scroll Down = -1
 					cout << "Mouse wheel Scroll:" << event.mouseWheel.delta << endl;
 					break;	
 				case sf::Event::MouseMoved:
-					cout << "Mouse position: {" << event.mouseMove.x << ", " << event.mouseMove.y << "}" << endl;
+					// cout << "Mouse position: {" << event.mouseMove.x << ", " << event.mouseMove.y << "}" << endl;
 					break;	
 				default:
 					break;
@@ -119,8 +119,9 @@ private:
 		};
 
 		for(short i = 0; i < Joystick_Buttons.size(); i++) {
-			if(Joystick_Buttons[i])
+			if(Joystick_Buttons[i]) {
 				cout << "Joystick " << joystickNum << " Button" << i << endl;
+			}
 		}
 
 		cout << "Joystick Axis: {" << sf::Joystick::getAxisPosition(joystickNum, sf::Joystick::X) << ", "

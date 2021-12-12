@@ -3,7 +3,7 @@
 
 #include "../battle/battle.h"
 #include "../battle/battleSchematic.h"
-#include "../eventHandler.h"
+#include "../gameSound.h"
 #include <iostream>
 #include "../initializer.h"
 #include <memory>
@@ -15,30 +15,35 @@ class PartyScreen {
 public:
 
 	PartyScreen() {}
-	PartyScreen(Initializer & globalData, vector<shared_ptr<Character>> playerParty) : 
-		eventHandler(globalData), battleSchematic(playerParty) {
-		cout << "Check 1" << endl;
+	PartyScreen(Initializer & globalData, vector<shared_ptr<Character>> playerParty) {
+
+	   	playerParty.push_back(shared_ptr<Character>(new Character("rabbit",  globalData)));
+	   	playerParty.push_back(shared_ptr<Character>(new Character("dragon",  globalData)));
+
 		this->globalData = &globalData;
-		cout << "Check 2" << endl;
-	   	this->playerParty.push_back(shared_ptr<Character>(new Character("heroine", globalData)));
-		cout << "Check 3" << endl;
-	   	this->playerParty.push_back(shared_ptr<Character>(new Character("dragon",  globalData)));
-		cout << "Check 4" << endl;
-	   	this->playerParty.push_back(shared_ptr<Character>(new Character("rabbit",  globalData)));
+	   	this->playerParty = playerParty;
+	   	this->battleSchematic = BattleSchematic(playerParty);
+	   	globalData.gameSound.loadAndPlayMusic("Sounds/Music/preBattle.ogg");
 	}
 
-	Initializer*    globalData;
-    EventHandler    eventHandler;
-    GameSound       gameSound;
-   	BattleSchematic battleSchematic;
+	/*---------------------------------------------------------------------------------------------*/
+
+	void runPartyScreenLoop() {
+	    globalData->window.clear(sf::Color(102, 255, 255));
+	    drawAllPartyScreenImages();
+	    globalData->window.display();
+	}
+
+private:
+
+	Initializer*       globalData;
+   	BattleSchematic    battleSchematic;
+    unique_ptr<Battle> battle;
+    sf::Sprite         background;
 
     vector<shared_ptr<Character>> playerParty;
 
-    unique_ptr<Battle> battle;
-
 	string backgroundSelection = "partyScreen";
-    sf::Sprite background;
-    
 
 	/*---------------------------------------------------------------------------------------------*/
 
@@ -87,12 +92,6 @@ public:
 
 	/*---------------------------------------------------------------------------------------------*/
 
-	void runPartyScreenLoop() {
-		eventHandler.listen();
-	    globalData->window.clear(sf::Color(102, 255, 255));
-	    drawAllPartyScreenImages();
-	    globalData->window.display();
-	}
 };
 
 #endif // PARTYSCREEN_H

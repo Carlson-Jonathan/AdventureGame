@@ -18,27 +18,19 @@ using namespace std;
 
 int main() {
 
-	cout << "Check x" << endl;
 	Initializer globalData;
-	cout << "Check y" << endl;	
-   cout << "check x" << endl;
 	
    // Create Player Party
    vector<shared_ptr<Character>> playerParty;
    playerParty.push_back(shared_ptr<Character>(new Character("heroine", globalData)));
-   playerParty.push_back(shared_ptr<Character>(new Character("dragon",  globalData)));
-   playerParty.push_back(shared_ptr<Character>(new Character("rabbit",  globalData)));
 
 	PartyScreen partyScreen(globalData, playerParty);
-   // BattleSchematic battleSchematic(playerParty);
-
-   // Battle battle(battleSchematic, globalData);
 
 	/**************************************  Main Game Loop ****************************************/
    while(globalData.window.isOpen()) {
+   	globalData.eventHandler.listen();
 
    	partyScreen.runPartyScreenLoop();
-   	// battle.runMainCombatLoop();
 
    }
    /***********************************************************************************************/

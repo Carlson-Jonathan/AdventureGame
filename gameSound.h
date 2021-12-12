@@ -14,7 +14,7 @@ public:
 		SFMLmusic.setLoop(true);
 	}
 
-	void loadAndPlayBattleMusic(string song) {
+	void loadAndPlayMusic(string song) {
 		if(!SFMLmusic.openFromFile(song)) {
 			cout << "ERROR: Unable to load file '" << song << "'" << endl;
 			return;

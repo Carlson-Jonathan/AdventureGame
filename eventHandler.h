@@ -6,20 +6,25 @@
 #include "initializer.h"
 #include <iostream>
 #include <vector>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 using namespace std;
 
 class EventHandler {
 public:
 
 	EventHandler() {}
-	EventHandler(Initializer & globalData) {
-		this->globalData = &globalData;
+	EventHandler(sf::RenderWindow & window, unsigned int & screenWidth, unsigned int & screenHeight) {
+		this->window = &window;
+		this->screenWidth = &screenWidth;
+		this->screenHeight = &screenHeight;
 	}
 
 	/*------------------------------------------------------------------------------------------------*/
 
 	void listen() {
-		while (globalData->window.pollEvent(event)) {
+		while (window->pollEvent(event)) {
 
 			switch(event.type) {
 				case sf::Event::Closed:
@@ -53,22 +58,25 @@ public:
 
 private:
 
+	unsigned int* screenWidth;
+	unsigned int* screenHeight;
+
 	sf::Event event;
-	Initializer* globalData;
+	sf::RenderWindow* window;
 
 	/*------------------------------------------------------------------------------------------------*/
 
 	void closeWindow() {
-		globalData->window.close();
+		window->close();
 	}
 
 	/*------------------------------------------------------------------------------------------------*/
 
 	void resizeWindow() {
-		globalData->screenWidth  = event.size.width;
-	    globalData->screenHeight = event.size.height;
-	    sf::FloatRect visibleArea(0, 0, globalData->screenWidth, globalData->screenHeight);
-	    globalData->window.setView(sf::View(visibleArea));
+		screenWidth  = &event.size.width;
+	    screenHeight = &event.size.height;
+	    sf::FloatRect visibleArea(0, 0, *screenWidth, *screenHeight);
+	    window->setView(sf::View(visibleArea));
 	}
 
 	/*------------------------------------------------------------------------------------------------*/
@@ -124,8 +132,8 @@ private:
 			}
 		}
 
-		cout << "Joystick Axis: {" << sf::Joystick::getAxisPosition(joystickNum, sf::Joystick::X) << ", "
-			 << sf::Joystick::getAxisPosition(joystickNum, sf::Joystick::Y) << "}" << endl;
+		// cout << "Joystick Axis: {" << sf::Joystick::getAxisPosition(joystickNum, sf::Joystick::X) << ", "
+		// 	 << sf::Joystick::getAxisPosition(joystickNum, sf::Joystick::Y) << "}" << endl;
 
 	}
 

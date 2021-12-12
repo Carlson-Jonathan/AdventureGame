@@ -23,7 +23,7 @@ class Battle {
 public:
 	Battle() {}
 	Battle(BattleSchematic battleSchematic, Initializer & globalData) : 
-		menuWheel(globalData), eventHandler(globalData) {
+		menuWheel(globalData) {
 
 		this->battleSchematic = battleSchematic;
 		this->playerParty = battleSchematic.playerParty;
@@ -35,7 +35,7 @@ public:
 		centerMenuWheelOnCharacter(playerParty[0]);
 
 		short randNum = Miscellaneous::generateRandomNumber(battleSchematic.availableBattleSongs.size());
-   	 	gameSound.loadAndPlayBattleMusic(battleSchematic.availableBattleSongs[randNum - 1]);
+   	 	globalData.gameSound.loadAndPlayMusic(battleSchematic.availableBattleSongs[randNum - 1]);
 	}
 
 	void runMainCombatLoop();
@@ -43,8 +43,7 @@ public:
 private:
 
     Initializer*    globalData;
-    EventHandler    eventHandler;
-    GameSound       gameSound;  
+    // GameSound       gameSound;  
     MenuWheel       menuWheel;
     BattleSchematic battleSchematic;
     
